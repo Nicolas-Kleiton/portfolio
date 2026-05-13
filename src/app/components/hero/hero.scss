@@ -1,0 +1,56 @@
+.hero {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    background-color: #f9f9f9;
+}
+
+.hero-conteiner {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-text {
+    position: absolute;
+    font-size: 10vw;
+    font-weight: 900;
+    color: #131212;
+    letter-spacing: -2px;
+    opacity: 0.5;
+    text-align: center;
+    line-height: 0.9;
+    line-height: 0.8;
+    z-index: 1;
+
+    span {
+        display: block;
+        white-space: nowrap;
+    }
+}
+
+.image-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 400px;
+    height: auto;
+    filter: grayscale(100%);
+    transition: 0.5s;
+
+    &:hover {
+        filter: grayscale(0%);
+    }
+}
