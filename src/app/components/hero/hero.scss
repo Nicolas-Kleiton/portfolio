@@ -19,22 +19,44 @@
     z-index: 1;
   }
 
+  .hero-container {
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .intro-greeting {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+  }
+
   .background-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 8vw;
+    font-size: 10vw;
     font-weight: 900;
-    color: rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 0.08);
     white-space: normal;
-    line-height: 0.8;
+    line-height: 0.9;
     text-align: center;
     width: 100%;
     z-index: 0;
     pointer-events: none;
     text-transform: uppercase;
-    letter-spacing: -5px;
+    letter-spacing: -4px;
+    margin: 0;
+
+    .typing-text {
+      font-size: 8vw;
+      color: #ff6b00;
+      white-space: nowrap;
+      text-shadow: 0 0 20px rgba(255, 107, 0, 0.1); 
+    }
   }
 }
 
@@ -42,15 +64,67 @@
 .cursor {
   color: #ff6b00;
   animation: blink 0.7s infinite;
-  margin-left: 5px;
-  font-weight: 100; 
+  margin-left: 2px;
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+  z-index: 5;
+  &:hover {
+    opacity: 1;
+  }
+  .mouse {
+    width: 22px;
+    height: 38px;
+    border: 2px solid #888;
+    border-radius: 12px;
+    position: relative;
+    .wheel {
+      width: 2px;
+      height: 6px;
+      background: #ff6b00;
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+      animation: scroll-wheel 1.6s infinite;
+    }
+  }
+  .scroll-text {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    font-weight: 500;
+  }
+}
+@keyframes scroll-wheel {
+  0% {
+    transform: translate(-50%, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, 15px);
+    opacity: 0;
+  }
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
-}
-
-.typing-text {
-  white-space: nowrap;
 }
