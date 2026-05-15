@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './components/navbar/navbar';
-import { Hero } from './components/hero/hero';
+import { HeroComponent } from './components/hero/hero';
 import { About } from './components/about/about';
 import { FeaturedProject } from './components/featured-project/featured-project';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Hero, About, FeaturedProject],
+  imports: [RouterOutlet, Navbar, HeroComponent, About, FeaturedProject],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

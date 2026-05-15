@@ -1,12 +1,14 @@
-<section class="hero">
-    <div class="hero-conteiner">
-        <h1 class="background-text">
-            <span>I'M A FULLSTACK</span>
-            <span>DEVELOPER</span>
-        </h1>
-        <div class="image-wrapper">
-            <div class="orange-accent"></div>
-            <img src="" alt="Nicolas Kleiton" class="profile-img">
-        </div>
-    </div>
+<section id="home" class="hero-section">
+  <!-- Subtle interactive glow -->
+  <div class="mouse-glow" [style.left.px]="mouseX" [style.top.px]="mouseY"></div>
+
+  <div class="hero-container">
+    <!-- Main dynamic background text with line break -->
+    <h1 class="background-text">
+      I'M A <br> 
+      <span class="typing-text">
+        {{ displayText }}<span class="cursor"></span>
+      </span>
+    </h1>
+  </div>
 </section>
