@@ -61,11 +61,22 @@ export class HeroComponent implements OnInit, OnDestroy {
       this.cdr.detectChanges();
 
       setTimeout(() => this.handleTyping(), this.typingSpeed);
-    }); // End of zone.run
-  } // End of handleTyping
+    });
+  }
 
   ngOnDestroy() {}
 
+  // Listens for tab visibility to prevent animation freezing
+  @HostListener('document:visibilitychange')
+  onVisibilityChange() {
+    if (!document.hidden) {
+      this.zone.run(() => {
+        this.cdr.detectChanges();
+      });
+    }
+  }
+
+  // Updates mouse coordinates for the background glow effect
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(e: MouseEvent) {
     this.mouseX = e.clientX;
