@@ -1,15 +1,16 @@
-<nav class="navbar">
+<nav class="navbar" [class.scrolled]="isScrolled">
     <div class="logo">
         Nicolas Kleiton
     </div>
 
     <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Me</a></li>
-        <li><a href="#">Projects</a></li>
-        <li><a href="#">Contact</a></li>
+        <li *ngFor="let link of navLinks">
+          <a [href]="link.path">{{ link.label }}</a>
+        </li>
     </ul>
-  <div class="nav-actions">
-    <button class="btn-download">Download CV</button>
-  </div>
+    
+    <button class="menu-toggle" (click)="toggleMenu()">
+      <span></span>
+      <span></span>
+    </button>
 </nav>
