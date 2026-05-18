@@ -72,13 +72,50 @@
 }
 .skills-section {
   margin-top: 60px;
+}
+
+.skills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
   
   h4 { 
     color: #444; 
     letter-spacing: 2px; 
     font-size: 0.75rem; 
-    margin-bottom: 20px;
+    margin: 0;
     text-transform: uppercase;
+  }
+}
+
+.filter-menu {
+  display: flex;
+  gap: 15px;
+
+  button {
+    background: transparent;
+    border: 1px solid #333;
+    color: #888;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #fff;
+      border-color: #666;
+    }
+
+    &.active {
+      background: #ff6b00;
+      color: #fff;
+      border-color: #ff6b00;
+    }
   }
 }
 .skills-grid {

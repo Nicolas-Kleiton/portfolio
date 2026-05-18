@@ -15,29 +15,33 @@
     <div class="divider"></div>
 
     <div class="extra-info">
-      <div class="info-box">
-        <h4>EDUCATION</h4>
-        <p class="highlight">B.S. in Computer Science</p>
-        <p class="subtext"> UFPB (2024-2028)</p>
+      <div class="info-box" *ngFor="let edu of educationList">
+        <h4>{{ edu.title }}</h4>
+        <p class="highlight">{{ edu.highlight }}</p>
+        <p class="subtext" *ngIf="edu.subtext">{{ edu.subtext }}</p>
       </div>
       
-      <div class="info-box">
-        <h4>ACHIEVEMENTS</h4>
-        <p class="highlight">🏆 2nd Place - Hackathon Trilhathon</p>
+      <div class="info-box" *ngFor="let ach of achievementsList">
+        <h4>{{ ach.title }}</h4>
+        <p class="highlight">{{ ach.highlight }}</p>
       </div>
     </div>
 
     <div class="skills-section">
-      <h4>TECHNICAL STACK</h4>
-      <div class="skills-grid">
-        <div class="skill-category wide">
-          <span class="cat-name">Languages & Frameworks —</span>
-          <p>C, Java, Python, FastAPI, SQL (MySQL, SQL Server), TypeScript, React, Angular</p>
+      <div class="skills-header">
+        <h4>TECHNICAL STACK</h4>
+        <div class="filter-menu">
+          <button [class.active]="activeFilter === 'all'" (click)="setFilter('all')">All</button>
+          <button [class.active]="activeFilter === 'frontend'" (click)="setFilter('frontend')">Frontend</button>
+          <button [class.active]="activeFilter === 'backend'" (click)="setFilter('backend')">Backend</button>
+          <button [class.active]="activeFilter === 'tools'" (click)="setFilter('tools')">Tools & AI</button>
         </div>
-        
-        <div class="skill-category wide">
-          <span class="cat-name">Tech & Infrastructure —</span>
-          <p>Docker, Git, LLM Integration (OpenAI), Prompt Engineering, Clean Architecture</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-category wide" *ngFor="let skill of filteredSkills">
+          <span class="cat-name">{{ skill.category }} —</span>
+          <p>{{ skill.items }}</p>
         </div>
       </div>
     </div>
