@@ -32,6 +32,7 @@ export class FeaturedProject {
     {
       title: 'PerCurso',
       date: '2024 - Present',
+      award: '🏆 2nd Place Hackathon',
       description: 'An open-source collaborative platform developed by a team of 3 to centralize study materials for university students. We worked together across the entire application, building the scalable architecture with Next.js dynamic routing and a recursive Markdown parsing system. My contributions spanned the full stack, from routing logic and data mapping to implementing the responsive UI and optimizing performance with Static Site Generation (SSG).',
       tags: ['Next.js 15', 'React', 'Markdown (Remark)', 'CSS Modules', 'SSG'],
       imageUrl: 'percurso/percurso.png',

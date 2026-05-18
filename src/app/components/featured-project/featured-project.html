@@ -30,7 +30,10 @@
       <h3 class="group-title">Personal Projects <span class="lock-icon">⚡</span></h3>
       <div class="projects-grid">
         <div class="project-card" *ngFor="let project of personalProjects">
-          <img [src]="project.imageUrl" alt="{{ project.title }} Preview" class="card-img">
+          <div class="img-wrapper">
+            <img [src]="project.imageUrl" alt="{{ project.title }} Preview" class="card-img">
+            <div class="award-badge" *ngIf="project.award">{{ project.award }}</div>
+          </div>
           <div class="card-content">
             <span class="project-date">{{ project.date }}</span>
             <h4>{{ project.title }}</h4>
