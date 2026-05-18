@@ -9,39 +9,16 @@
     <div class="project-group">
       <h3 class="group-title">Enterprise Solutions <span class="lock-icon">🔒</span></h3>
       <div class="projects-grid enterprise">
-
-        <div class="project-card abstract">
+        <div class="project-card abstract" *ngFor="let project of enterpriseProjects">
           <div class="card-icon">
-            <i class="tech-icon">GabIA</i>
+            <i class="tech-icon">{{ project.iconText }}</i>
           </div>
           <div class="card-content">
-            <span class="project-date">03/2025 — Present</span>
-            <h4>GabIA — Resource Analysis</h4>
-            <p>Full-cycle development from requirements to maintenance. Implemented Clean Architecture to <strong>reduce manual auditor analysis by 80%</strong>. Built Python pipelines with OpenAI and Prompt Engineering for document categorization.</p>
+            <span class="project-date">{{ project.date }}</span>
+            <h4>{{ project.title }}</h4>
+            <p [innerHTML]="project.description"></p>
             <div class="tags">
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Python</span>
-              <span>OpenAI</span>
-              <span>Clean Arch</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card abstract">
-          <div class="card-icon">
-            <i class="tech-icon">SISLEIA</i>
-          </div>
-          <div class="card-content">
-            <span class="project-date">Final Delivery</span>
-            <h4>SISLEIA — Reading Evaluation</h4>
-            <p>Architected a high-performance PWA for reading fluency analysis. <strong>Automated 100% of the evaluation flow</strong>, reducing audio analysis time from hours to seconds per student via AI integration and FastAPI.</p>
-            <div class="tags">
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Python</span>
-              <span>OpenAI</span>
-              <span>Clean Arch</span>
+              <span *ngFor="let tag of project.tags">{{ tag }}</span>
             </div>
           </div>
         </div>
@@ -49,6 +26,25 @@
       </div>
     </div>
 
-    <!-- Projetos Pessoais virão abaixo... -->
+    <div class="project-group">
+      <h3 class="group-title">Personal Projects <span class="lock-icon">⚡</span></h3>
+      <div class="projects-grid">
+        <div class="project-card" *ngFor="let project of personalProjects">
+          <img [src]="project.imageUrl" alt="{{ project.title }} Preview" class="card-img">
+          <div class="card-content">
+            <span class="project-date">{{ project.date }}</span>
+            <h4>{{ project.title }}</h4>
+            <p>{{ project.description }}</p>
+            <div class="tags">
+              <span *ngFor="let tag of project.tags">{{ tag }}</span>
+            </div>
+            <a [href]="project.githubLink" target="_blank" class="view-project">
+              VIEW REPOSITORY <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
