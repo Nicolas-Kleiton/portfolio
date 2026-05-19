@@ -257,6 +257,7 @@
   margin-top: 100px; 
   width: 100%;
   position: relative;
+  
   .dot {
     width: 8px;
     height: 8px;
@@ -264,10 +265,58 @@
     border-radius: 50%;
     box-shadow: 0 0 10px #ff6b00;
     flex-shrink: 0;
+    opacity: 0;
   }
   .line {
     flex: 1;
     height: 1px;
-    background: linear-gradient(to right, rgba(255, 107, 0, 0.4), transparent);
+    background: rgba(255, 107, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    max-width: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150px;
+      height: 100%;
+      width: 150px;
+      background: linear-gradient(to right, transparent, #ff6b00, transparent);
+    }
   }
+
+  &.animate-reveal {
+    .dot {
+      opacity: 1;
+      transition: opacity 0.5s ease-in;
+    }
+    .line {
+      max-width: 100%;
+      transition: max-width 1.5s ease-out;
+    }
+  }
+
+  &.animate-idle {
+    .dot {
+      animation: bulbPulse 2s infinite ease-in-out;
+      opacity: 1;
+    }
+    .line {
+      max-width: 100%;
+    }
+    .line::after {
+      animation: snakeSweep 3s infinite linear;
+    }
+  }
+}
+
+@keyframes snakeSweep {
+  0% { left: -150px; }
+  100% { left: 100%; }
+}
+
+@keyframes bulbPulse {
+  0%, 100% { box-shadow: 0 0 10px #ff6b00; }
+  50% { box-shadow: 0 0 25px #ff6b00, 0 0 5px #ff6b00; }
 }

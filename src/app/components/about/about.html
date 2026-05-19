@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <div class="section-divider">
+    <div class="section-divider" #divider [ngClass]="{'animate-reveal': isRevealed, 'animate-idle': isIdle}">
       <div class="line"></div>
       <div class="dot"></div>
     </div>

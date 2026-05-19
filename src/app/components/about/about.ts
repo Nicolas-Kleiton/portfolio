@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,7 +8,31 @@ import { CommonModule } from '@angular/common';
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
-export class About {
+export class About implements AfterViewInit {
+  @ViewChild('divider') dividerRef!: ElementRef;
+  isRevealed = false;
+  isIdle = false;
+
+  ngAfterViewInit() {
+    // Only run on the browser side, setting up the observer
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !this.isRevealed) {
+            this.isRevealed = true;
+            // After the 1.5s reveal animation finishes, start the idle animations
+            setTimeout(() => {
+              this.isIdle = true;
+            }, 1500);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      if (this.dividerRef) {
+        observer.observe(this.dividerRef.nativeElement);
+      }
+    }
+  }
   // Data models for dynamic rendering
   educationList = [
     { title: 'EDUCATION', highlight: 'B.S. in Computer Science', subtext: 'UFPB (2024-2028)' }
