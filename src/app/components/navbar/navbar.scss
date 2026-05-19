@@ -31,7 +31,24 @@
         .logo {
             color: #ff6b00;
         }
-  }
+    }
+
+    &.scrolled-light {
+        padding: 15px 10%;
+        background: #FAF9F6;
+        box-shadow: none;
+        border-bottom: none;
+
+        .logo {
+            color: #000;
+        }
+        .nav-links a {
+            color: #555;
+            &:hover {
+                color: #ff6b00;
+            }
+        }
+    }
 }
 
 .nav-links{
