@@ -20,7 +20,7 @@ export class About {
 
   allSkills = [
     { category: 'Frontend', items: 'TypeScript, React, Angular, HTML/CSS', type: 'frontend' },
-    { category: 'Backend & DB', items: 'C, Java, Python, FastAPI, MySQL, SQL Server', type: 'backend' },
+    { category: 'Backend & DB', items: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server', type: 'backend' },
     { category: 'Infrastructure', items: 'Docker, Git, Clean Architecture', type: 'tools' },
     { category: 'Artificial Intelligence', items: 'LLM Integration (OpenAI), Prompt Engineering', type: 'tools' }
   ];
