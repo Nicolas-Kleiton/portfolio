@@ -19,6 +19,7 @@ export class Navbar {
 
   isMenuOpen = false;
   isScrolled = false;
+  isContactSection = false;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -27,5 +28,12 @@ export class Navbar {
   @HostListener('window:scroll', [])
   onWindowScroll(){
     this.isScrolled = window.scrollY > 50;
+
+    // Detect if scrolled into the contact section for light theme
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      const rect = contactEl.getBoundingClientRect();
+      this.isContactSection = rect.top <= 80;
+    }
   }
 }
