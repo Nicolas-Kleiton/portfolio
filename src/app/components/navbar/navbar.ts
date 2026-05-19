@@ -31,9 +31,8 @@ export class Navbar {
     this.activeSection = path;
     const element = document.getElementById(path);
     if (element) {
-      const offset = 80; 
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - offset;
+      const offsetPosition = elementPosition + window.scrollY;
 
       window.scrollTo({
         top: offsetPosition,
