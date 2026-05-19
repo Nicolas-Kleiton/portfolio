@@ -44,7 +44,7 @@
         }
         .nav-links a {
             color: #555;
-            &:hover {
+            &:hover, &.active {
                 color: #ff6b00;
             }
         }
@@ -67,7 +67,7 @@
         text-transform: uppercase;
         transition: 0.3s;
 
-        &:hover {
+        &:hover, &.active {
             color: #ff6b00;
         }
     }

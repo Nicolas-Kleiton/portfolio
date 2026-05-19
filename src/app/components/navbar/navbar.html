@@ -5,7 +5,11 @@
 
     <ul class="nav-links">
         <li *ngFor="let link of navLinks">
-          <a [href]="link.path">{{ link.label }}</a>
+          <a href="javascript:void(0)" 
+             (click)="scrollToSection($event, link.path)"
+             [class.active]="activeSection === link.path">
+             {{ link.label }}
+          </a>
         </li>
     </ul>
     
