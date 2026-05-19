@@ -1,0 +1,109 @@
+.contact-section {
+  background-color: #FAF9F6;
+  color: #111;
+  padding: 0 10%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.contact-header {
+  margin-top: auto;
+  margin-bottom: 50px;
+  
+  .subtitle {
+    color: #ff6b00;
+    letter-spacing: 3px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 20px;
+  }
+  
+  .main-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
+    color: #0d0d0d;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.contact-action {
+  margin-bottom: auto;
+
+  .btn-email {
+    display: inline-block;
+    padding: 18px 45px;
+    background-color: #ff6b00;
+    color: #FAF9F6; 
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
+    box-shadow: 0 5px 15px rgba(255, 107, 0, 0.3);
+    
+    &:hover {
+      background-color: transparent; 
+      color: #ff6b00;
+      border-color: #ff6b00;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
+    }
+  }
+}
+
+.contact-footer {
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .social-links {
+    display: flex;
+    gap: 40px;
+    
+    a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: #ff6b00;
+      }
+    }
+  }
+  
+  .copyright {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
+  }
+}
