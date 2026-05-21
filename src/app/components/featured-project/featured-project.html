@@ -2,12 +2,12 @@
   <div class="container">
     
     <div class="section-header">
-      <span class="subtitle">PORTFOLIO</span>
-      <h2 class="main-title">Featured Projects</h2>
+      <span class="subtitle">{{ t.projects.subtitle }}</span>
+      <h2 class="main-title">{{ t.projects.title }}</h2>
     </div>
 
     <div class="project-group">
-      <h3 class="group-title">Enterprise Solutions <span class="lock-icon">🔒</span></h3>
+      <h3 class="group-title">{{ t.projects.enterprise }} <span class="lock-icon">🔒</span></h3>
       <div class="projects-grid enterprise">
         <div class="project-card abstract" *ngFor="let project of enterpriseProjects">
           <div class="card-icon">
@@ -27,7 +27,7 @@
     </div>
 
     <div class="project-group">
-      <h3 class="group-title">Personal Projects <span class="lock-icon">⚡</span></h3>
+      <h3 class="group-title">{{ t.projects.personal }} <span class="lock-icon">⚡</span></h3>
       <div class="projects-grid">
         <div class="project-card" *ngFor="let project of personalProjects">
           <div class="img-wrapper">
@@ -42,7 +42,7 @@
               <span *ngFor="let tag of project.tags">{{ tag }}</span>
             </div>
             <a [href]="project.githubLink" target="_blank" class="view-project">
-              VIEW REPOSITORY <span class="arrow">→</span>
+              {{ t.projects.viewRepo }} <span class="arrow">→</span>
             </a>
           </div>
         </div>

@@ -1,5 +1,6 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-about',
@@ -9,6 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './about.scss',
 })
 export class About implements AfterViewInit {
+  readonly translationService = inject(TranslationService);
+
+  get t() {
+    return this.translationService.t();
+  }
+
   @ViewChild('divider') dividerRef!: ElementRef;
   isRevealed = false;
   isIdle = false;
@@ -34,20 +41,29 @@ export class About implements AfterViewInit {
     }
   }
   // Data models for dynamic rendering
-  educationList = [
-    { title: 'EDUCATION', highlight: 'B.S. in Computer Science', subtext: 'UFPB (2024-2028)' }
-  ];
+  get educationList() {
+    const aboutT = this.t.about;
+    return [
+      { title: aboutT.eduTitle, highlight: aboutT.eduHighlight, subtext: aboutT.eduSubtext }
+    ];
+  }
 
-  achievementsList = [
-    { title: 'ACHIEVEMENTS', highlight: '🏆 2nd Place - Hackathon Trilhathon' }
-  ];
+  get achievementsList() {
+    const aboutT = this.t.about;
+    return [
+      { title: aboutT.achTitle, highlight: aboutT.achHighlight }
+    ];
+  }
 
-  allSkills = [
-    { category: 'Frontend', items: 'TypeScript, React, Angular, HTML/CSS', type: 'frontend' },
-    { category: 'Backend & DB', items: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server', type: 'backend' },
-    { category: 'Infrastructure', items: 'Docker, Git, Clean Architecture', type: 'tools' },
-    { category: 'Artificial Intelligence', items: 'LLM Integration (OpenAI), Prompt Engineering', type: 'tools' }
-  ];
+  get allSkills() {
+    const aboutT = this.t.about;
+    return [
+      { category: 'Frontend', items: aboutT.skills.frontend, type: 'frontend' },
+      { category: 'Backend & DB', items: aboutT.skills.backend, type: 'backend' },
+      { category: 'Infrastructure', items: aboutT.skills.infra, type: 'tools' },
+      { category: 'Artificial Intelligence', items: aboutT.skills.ai, type: 'tools' }
+    ];
+  }
 
   // Current state for skill categorization
   activeFilter: string = 'all';

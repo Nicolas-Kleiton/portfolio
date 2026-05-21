@@ -2,9 +2,9 @@
   <div class="mouse-glow" [style.left.px]="mouseX" [style.top.px]="mouseY"></div>
 
   <div class="hero-container">
-    <p class="intro-greeting">👋, my name is Nicolas and</p>
+    <p class="intro-greeting">{{ t.hero.greeting }}</p>
     <h1 class="background-text">
-      I'M A <br> 
+      {{ t.hero.imA }} <br> 
       <span class="typing-text">
         {{ displayText }}<span class="cursor">|</span>
       </span>

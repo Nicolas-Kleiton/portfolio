@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +11,17 @@ import { Component, HostListener } from '@angular/core';
 })
 
 export class Navbar {
-  navLinks = [
-    { label: 'Home', path: 'home'},
-    { label: 'About Me', path: 'about'},
-    { label: 'Projects', path: 'projects'},
-    { label: 'Contact', path: 'contact'},
-  ];
+  readonly translationService = inject(TranslationService);
+
+  get navLinks() {
+    const t = this.translationService.t().navbar;
+    return [
+      { label: t.home, path: 'home'},
+      { label: t.about, path: 'about'},
+      { label: t.projects, path: 'projects'},
+      { label: t.contact, path: 'contact'},
+    ];
+  }
 
   isMenuOpen = false;
   isScrolled = false;

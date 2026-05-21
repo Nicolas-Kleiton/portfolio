@@ -13,8 +13,16 @@
         </li>
     </ul>
     
-    <button class="menu-toggle" (click)="toggleMenu()">
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-actions">
+      <button class="lang-toggle" (click)="translationService.toggleLanguage()">
+        <span [class.active]="translationService.language() === 'pt'">PT</span>
+        <span class="separator">/</span>
+        <span [class.active]="translationService.language() === 'en'">EN</span>
+      </button>
+      
+      <button class="menu-toggle" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+      </button>
+    </div>
 </nav>

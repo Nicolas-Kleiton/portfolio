@@ -3,14 +3,9 @@
     
     <div class="about-header-grid">
       <div class="about-intro">
-        <span class="subtitle">WHO I AM</span>
-        <h2 class="main-title">Fullstack Developer</h2>
-        <p class="bio">
-          Computer Science student at <strong>Federal University of Paraíba (UFPB)</strong> and Software Engineer at <strong>CEBRASPE</strong> and <strong>TRIL LAB</strong>. 
-          I operate across the full development lifecycle—from requirement validation to the architecture of complex systems. 
-          As a <strong>Fullstack Developer</strong>, I build high-performance interfaces with <strong>React</strong> and scalable backends in <strong>Python</strong>, 
-          leveraging <strong>AI models</strong> to transform challenging demands into automated, high-efficiency solutions.
-        </p>
+        <span class="subtitle">{{ t.about.subtitle }}</span>
+        <h2 class="main-title">{{ t.about.title }}</h2>
+        <p class="bio" [innerHTML]="t.about.bio"></p>
       </div>
 
       <div class="about-image">
@@ -37,12 +32,12 @@
 
     <div class="skills-section">
       <div class="skills-header">
-        <h4>TECHNICAL STACK</h4>
+        <h4>{{ t.about.techStack }}</h4>
         <div class="filter-menu">
-          <button [class.active]="activeFilter === 'all'" (click)="setFilter('all')">All</button>
-          <button [class.active]="activeFilter === 'frontend'" (click)="setFilter('frontend')">Frontend</button>
-          <button [class.active]="activeFilter === 'backend'" (click)="setFilter('backend')">Backend</button>
-          <button [class.active]="activeFilter === 'tools'" (click)="setFilter('tools')">Tools & AI</button>
+          <button [class.active]="activeFilter === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
+          <button [class.active]="activeFilter === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
+          <button [class.active]="activeFilter === 'backend'" (click)="setFilter('backend')">{{ t.about.filterBackend }}</button>
+          <button [class.active]="activeFilter === 'tools'" (click)="setFilter('tools')">{{ t.about.filterTools }}</button>
         </div>
       </div>
 
@@ -58,11 +53,11 @@
       <div class="divider sutil"></div>
       <div class="footer-content">
         <a href="" class="btn-cv" download>
-          DOWNLOAD CV <span class="arrow">↓</span>
+          {{ t.about.downloadCv }} <span class="arrow">↓</span>
         </a>
         <div class="mini-social">
-          <a href="https://github.com/Nicolas-Kleiton" target="_blank">GITHUB</a>
-          <a href="https://linkedin.com/in/nicolaskleiton" target="_blank">LINKEDIN</a>
+          <a href="https://github.com/Nicolas-Kleiton" target="_blank">{{ t.about.github }}</a>
+          <a href="https://linkedin.com/in/nicolaskleiton" target="_blank">{{ t.about.linkedin }}</a>
         </div>
       </div>
     </div>

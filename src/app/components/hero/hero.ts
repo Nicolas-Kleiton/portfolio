@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, HostListener, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, ChangeDetectorRef, NgZone, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-hero',
@@ -9,8 +10,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './hero.scss'
 })
 export class HeroComponent implements OnInit, OnDestroy {
-  
-  roles: string[] = ['FULLSTACK DEVELOPER', 'SOFTWARE ENGINEER'];
+  readonly translationService = inject(TranslationService);
+
+  get roles(): string[] {
+    return this.translationService.t().hero.roles;
+  }
+
+  get t() {
+    return this.translationService.t();
+  }
   
   // Typewriter effect state variables
   displayText: string = '';
