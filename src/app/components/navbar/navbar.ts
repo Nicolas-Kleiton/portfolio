@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener, inject } from '@angular/core';
+import { Component, HostListener, inject, OnDestroy } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TranslationService } from '../../services/translation.service';
   styleUrl: './navbar.scss',
 })
 
-export class Navbar {
+export class Navbar implements OnDestroy {
   readonly translationService = inject(TranslationService);
 
   get navLinks() {
@@ -30,6 +30,36 @@ export class Navbar {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+    this.updateBodyScroll();
+  }
+
+  closeMenu() {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+      this.updateBodyScroll();
+    }
+  }
+
+  private updateBodyScroll() {
+    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
+  }
+
+  ngOnDestroy() {
+    document.body.style.overflow = '';
+  }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.closeMenu();
+    }
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    if (window.innerWidth > 768 && this.isMenuOpen) {
+      this.closeMenu();
+    }
   }
 
   scrollToSection(event: Event, path: string) {
@@ -46,7 +76,7 @@ export class Navbar {
       });
     }
     // Close mobile menu after clicking
-    this.isMenuOpen = false; 
+    this.closeMenu();
   }
 
   @HostListener('window:scroll', [])

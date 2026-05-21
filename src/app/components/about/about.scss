@@ -6,6 +6,13 @@
   display: flex;
   align-items: center;
   position: relative;
+
+  @media (max-width: 1200px) {
+    padding: 80px 8%;
+  }
+  @media (max-width: 992px) {
+    padding: 60px 5%;
+  }
 }
 .container {
   width: 100%;
@@ -16,6 +23,13 @@
   gap: 40px; 
   align-items: center;
   margin-bottom: 50px;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+    justify-items: center;
+  }
 }
 
 .about-intro {
@@ -27,14 +41,19 @@
     display: block;
   }
   .main-title { 
-    font-size: 5rem; 
+    font-size: clamp(2.5rem, 8vw, 5rem); 
     font-weight: 800; 
     margin-bottom: 15px;
     letter-spacing: -2px;
+    line-height: 1.1;
+
+    @media (max-width: 480px) {
+      letter-spacing: -1px;
+    }
   }
   .bio {
-    font-size: 1.3rem;
-    line-height: 2;
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    line-height: 1.8;
     color: #888;
     letter-spacing: 0.2px;
     
@@ -53,11 +72,13 @@
 .about-image {
   display: flex;
   justify-content: center;
+  width: 100%;
 
   .image-wrapper {
     position: relative;
-    width: 400px;
-    height: 480px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 5 / 6;
     border-radius: 24px;
     display: flex;
     justify-content: center;
@@ -118,6 +139,19 @@
 .extra-info {
   display: flex;
   gap: 100px;
+
+  @media (max-width: 992px) {
+    gap: 50px;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
+  }
+
   .info-box {
     h4 { 
       color: #444; 
@@ -147,6 +181,12 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 25px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
   
   h4 { 
     color: #444; 
@@ -160,6 +200,12 @@
 .filter-menu {
   display: flex;
   gap: 15px;
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
 
   button {
     background: transparent;
@@ -190,6 +236,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
 .skill-category.wide {
   border-left: 2px solid #ff6b00;
@@ -217,6 +268,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 576px) {
+      flex-direction: column;
+      gap: 25px;
+      text-align: center;
+    }
   }
 }
 .btn-cv {
@@ -238,6 +295,13 @@
 .mini-social {
   display: flex;
   gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
+
   a {
     color: #444;
     text-decoration: none;
@@ -274,7 +338,7 @@
     position: relative;
     overflow: hidden;
     max-width: 0;
-
+ 
     &::after {
       content: '';
       position: absolute;

@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 20px;
 
   .mouse-glow {
     position: fixed;
@@ -38,7 +39,7 @@
   }
 
   .background-text {
-    font-size: 10vw;
+    font-size: clamp(3rem, 10vw, 8rem);
     font-weight: 900;
     color: rgba(0, 0, 0, 0.08);
     white-space: normal;
@@ -48,14 +49,22 @@
     z-index: 0;
     pointer-events: none;
     text-transform: uppercase;
-    letter-spacing: -4px;
+    letter-spacing: -2px;
     margin: 0;
 
+    @media (max-width: 480px) {
+      letter-spacing: -1px;
+    }
+
     .typing-text {
-      font-size: 6.8vw;
+      font-size: clamp(2rem, 6.8vw, 5.5rem);
       color: #ff6b00;
       white-space: nowrap;
       text-shadow: 0 0 20px rgba(255, 107, 0, 0.1); 
+
+      @media (max-width: 480px) {
+        font-size: clamp(1.5rem, 5.5vw, 2rem);
+      }
     }
   }
 }

@@ -8,14 +8,25 @@
 }
 
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin-left: 10%;
-  margin-right: auto;
+  width: 85%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    width: 88%;
+  }
+  @media (max-width: 992px) {
+    width: 90%;
+  }
 }
 
 .section-header {
   margin-bottom: 80px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 50px;
+    text-align: center;
+  }
   
   .subtitle {
     color: #ff6b00;
@@ -27,15 +38,20 @@
   }
 
   .main-title {
-    font-size: 3.5rem;
+    font-size: clamp(2.2rem, 7vw, 3.5rem);
     font-weight: 900;
     color: #fff;
     letter-spacing: -1px;
+    line-height: 1.1;
   }
 }
 
 .project-group {
   margin-bottom: 100px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 60px;
+  }
 
   .group-title {
     font-size: 1.2rem;
@@ -44,6 +60,10 @@
     display: flex;
     align-items: center;
     gap: 15px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 25px;
+    }
 
     .lock-icon {
       font-size: 0.9rem;
@@ -63,6 +83,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
   gap: 40px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
 }
 
 .project-card {
@@ -89,13 +114,17 @@
 
   &.abstract {
     .card-icon {
-      height: 180px;
+      height: 140px;
       background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
+
+      @media (max-width: 576px) {
+        height: 120px;
+      }
 
       &::before {
         content: '';
@@ -150,6 +179,10 @@
     object-position: top center; 
     transition: transform 0.6s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    @media (max-width: 576px) {
+      height: 200px;
+    }
   }
 
   .card-content {
@@ -157,6 +190,10 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 576px) {
+      padding: 25px 20px;
+    }
 
     .project-date {
       font-size: 0.65rem;

@@ -19,6 +19,10 @@
         transition: color 0.4s ease;
         text-decoration: none;
         user-select: none;
+
+        @media (max-width: 768px) {
+            font-size: 1rem;
+        }
     }
 
 
@@ -44,6 +48,10 @@
                     text-shadow: 0 0 10px rgba(255, 107, 0, 0.2);
                 }
             }
+        }
+
+        .menu-toggle span {
+            background: #fff;
         }
     }
 
@@ -83,6 +91,45 @@
                 background: rgba(255, 107, 0, 0.05);
             }
         }
+
+        .menu-toggle span {
+            background: #000;
+        }
+    }
+
+    &.menu-open {
+        background: #0d0d0d !important;
+
+        .logo {
+            color: #fff !important;
+        }
+        .nav-links a {
+            color: #fff !important;
+            &:hover, &.active {
+                color: #ff6b00 !important;
+            }
+        }
+        .lang-toggle {
+            border-color: rgba(255, 255, 255, 0.15) !important;
+            span {
+                color: #888 !important;
+                
+                &.separator {
+                    color: rgba(255, 255, 255, 0.15) !important;
+                }
+
+                &.active {
+                    color: #ff6b00 !important;
+                }
+            }
+            &:hover {
+                background: rgba(255, 107, 0, 0.1) !important;
+                border-color: rgba(255, 107, 0, 0.4) !important;
+            }
+        }
+        .menu-toggle span {
+            background: #fff !important;
+        }
     }
 }
 
@@ -115,13 +162,40 @@
     cursor: pointer;
     padding: 10px;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
+    z-index: 1000;
+
     span {
         display: block;
-        width: 25px;
+        width: 22px;
         height: 2px;
-        background: #fff;
-        transition: 0.3s;
+        background: #000; // Default dark for light background hero
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        &:nth-child(2) {
+            width: 16px;
+            align-self: flex-end;
+        }
+    }
+
+    &.active {
+        span {
+            background: #fff;
+            
+            &:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+            
+            &:nth-child(2) {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            
+            &:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+                width: 22px;
+            }
+        }
     }
 }
 
@@ -147,6 +221,7 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     user-select: none;
+    z-index: 1000;
 
     span {
         color: #888;
@@ -167,5 +242,71 @@
         border-color: rgba(255, 107, 0, 0.4);
         transform: translateY(-1px);
         background: rgba(255, 107, 0, 0.05);
+    }
+}
+
+// Media Query for Tablet/Mobile Menu
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 320px;
+        height: 100vh;
+        height: 100dvh;
+        background: rgba(13, 13, 13, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        padding: 40px;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 999;
+        transform: none;
+        left: auto;
+
+        &::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        &.active {
+            right: 0;
+
+            &::before {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        a {
+            color: #fff !important;
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+
+            &:hover, &.active {
+                color: #ff6b00 !important;
+            }
+        }
     }
 }

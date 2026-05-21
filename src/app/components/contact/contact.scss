@@ -7,6 +7,10 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 0 5%;
+  }
 }
 
 .container {
@@ -31,15 +35,20 @@
   }
   
   .main-title {
-    font-size: 4.5rem;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
     font-weight: 900;
     margin-bottom: 25px;
     letter-spacing: -2px;
     color: #0d0d0d;
+    line-height: 1.1;
+
+    @media (max-width: 480px) {
+      letter-spacing: -1px;
+    }
   }
   
   .description {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
     line-height: 1.8;
     color: #555;
     max-width: 600px;
@@ -85,6 +94,12 @@
   .social-links {
     display: flex;
     gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 480px) {
+      gap: 25px;
+    }
     
     a {
       color: #333;
@@ -105,5 +120,6 @@
     font-size: 0.85rem;
     color: #888;
     margin: 0;
+    text-align: center;
   }
 }

@@ -1,9 +1,9 @@
-<nav class="navbar" [class.scrolled]="isScrolled && !isContactSection" [class.scrolled-light]="isContactSection">
+<nav class="navbar" [class.scrolled]="isScrolled && !isContactSection" [class.scrolled-light]="isContactSection" [class.menu-open]="isMenuOpen">
     <div class="logo">
          &lt;/&gt; Nicolas Kleiton
     </div>
 
-    <ul class="nav-links">
+    <ul class="nav-links" [class.active]="isMenuOpen">
         <li *ngFor="let link of navLinks">
           <a href="javascript:void(0)" 
              (click)="scrollToSection($event, link.path)"
@@ -20,7 +20,8 @@
         <span [class.active]="translationService.language() === 'en'">EN</span>
       </button>
       
-      <button class="menu-toggle" (click)="toggleMenu()">
+      <button class="menu-toggle" [class.active]="isMenuOpen" (click)="toggleMenu()">
+        <span></span>
         <span></span>
         <span></span>
       </button>
