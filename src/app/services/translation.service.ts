@@ -65,7 +65,8 @@ export class TranslationService {
         title: 'Vamos trabalhar juntos.',
         description: 'Atualmente estou aberto a novas oportunidades. Se você tiver alguma dúvida ou apenas quiser dizer um oi, minha caixa de entrada está sempre aberta. Farei o meu melhor para responder!',
         sayHello: 'Diga Olá',
-        copyright: 'Desenhado & Desenvolvido por Nicolas Kleiton © 2026'
+        copyright: 'Desenhado & Desenvolvido por Nicolas Kleiton © 2026',
+        resume: 'Currículo'
       }
     },
     en: {
@@ -124,7 +125,8 @@ export class TranslationService {
         title: "Let's work together.",
         description: 'I am currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open. I\'ll try my best to get back to you!',
         sayHello: 'Say Hello',
-        copyright: 'Designed & Built by Nicolas Kleiton © 2026'
+        copyright: 'Designed & Built by Nicolas Kleiton © 2026',
+        resume: 'Resume'
       }
     }
   };
