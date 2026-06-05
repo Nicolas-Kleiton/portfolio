@@ -51,14 +51,17 @@ export class TranslationService {
         enterprise: 'Soluções Corporativas',
         personal: 'Projetos Pessoais',
         viewRepo: 'VER REPOSITÓRIO',
+        viewLive: 'VISITAR SITE',
         gabiaTitle: 'GabIA — Análise de Recursos',
         gabiaDate: '03/2025 — Presente',
         gabia: 'Desenvolvimento de ponta a ponta, desde requisitos até manutenção. Implementei Clean Architecture para <strong>reduzir a análise manual do auditor em 80%</strong>. Desenvolvi pipelines Python com OpenAI e Engenharia de Prompt para categorização de documentos.',
         sisleiaTitle: 'SISLEIA — Avaliação de Leitura',
-        sisleiaDate: '09/2025 — Presente',
+        sisleiaDate: '09/2025 — 05/2026',
         sisleia: 'Arquitetura de um PWA de alta performance para análise de fluência em leitura. <strong>Automatizei 100% do fluxo de avaliação</strong>, reduzindo o tempo de análise de áudio de horas para segundos por aluno via integração de IA e FastAPI.',
-        percursoDate: '2024 — Presente',
-        percurso: 'Uma plataforma colaborativa open-source desenvolvida por uma equipe de 3 para centralizar materiais de estudo para estudantes universitários. Trabalhamos juntos em toda a aplicação, construindo a arquitetura escalável com Next.js dynamic routing e um sistema recursivo de parsing de Markdown. Minhas contribuições abrangeram todo o stack, desde lógica de roteamento e mapeamento de dados até a implementação da UI responsiva e otimização de desempenho com Geração de Site Estático (SSG).'
+        percursoDate: '11/2024 — 12/2024',
+        percurso: 'Uma plataforma colaborativa open-source desenvolvida por uma equipe de 3 para centralizar materiais de estudo para estudantes universitários. Trabalhamos juntos em toda a aplicação, construindo a arquitetura escalável com Next.js dynamic routing e um sistema recursivo de parsing de Markdown. Minhas contribuições abrangeram todo o stack, desde lógica de roteamento e mapeamento de dados até a implementação da UI responsiva e otimização de desempenho com Geração de Site Estático (SSG).',
+        cinematchDate: '05/2026 — 06/2026',
+        cinematch: 'Uma plataforma web full-stack projetada para organizar e gerenciar sessões de cinema. Construí todo o sistema desenvolvendo um catálogo com busca, uma roleta interativa para sorteio de filmes e um histórico pessoal de avaliações. Para simplificar o teste da aplicação, implementei um modo de visitante, operando em paralelo à autenticação segura com JWT para usuários registrados.'
       },
       contact: {
         subtitle: 'QUAL O PRÓXIMO PASSO?',
@@ -111,14 +114,17 @@ export class TranslationService {
         enterprise: 'Enterprise Solutions',
         personal: 'Personal Projects',
         viewRepo: 'VIEW REPOSITORY',
+        viewLive: 'LIVE DEMO',
         gabiaTitle: 'GabIA — Resource Analysis',
         gabiaDate: '03/2025 — Present',
         gabia: 'Full-cycle development from requirements to maintenance. Implemented Clean Architecture to <strong>reduce manual auditor analysis by 80%</strong>. Built Python pipelines with OpenAI and Prompt Engineering for document categorization.',
         sisleiaTitle: 'SISLEIA — Reading Evaluation',
-        sisleiaDate: '09/2025 — Present',
+        sisleiaDate: '09/2025 — 05/2026',
         sisleia: 'Architected a high-performance PWA for reading fluency analysis. <strong>Automated 100% of the evaluation flow</strong>, reducing audio analysis time from hours to seconds per student via AI integration and FastAPI.',
-        percursoDate: '2024 — Present',
-        percurso: 'An open-source collaborative platform developed by a team of 3 to centralize study materials for university students. We worked together across the entire application, building the scalable architecture with Next.js dynamic routing and a recursive Markdown parsing system. My contributions spanned the full stack, from routing logic and data mapping to implementing the responsive UI and optimizing performance with Static Site Generation (SSG).'
+        percursoDate: '11/2024 — 12/2024',
+        percurso: 'An open-source collaborative platform developed by a team of 3 to centralize study materials for university students. We worked together across the entire application, building the scalable architecture with Next.js dynamic routing and a recursive Markdown parsing system. My contributions spanned the full stack, from routing logic and data mapping to implementing the responsive UI and optimizing performance with Static Site Generation (SSG).',
+        cinematchDate: '05/2026 — 06/2026',
+        cinematch: 'A full-stack web platform designed to organize and manage movie sessions. I built the entire system by developing a searchable catalog, an interactive roulette for random movie selections, and a personal evaluation history. To simplify application testing, I implemented a guest mode, operating alongside secure JWT authentication for registered users.'
       },
       contact: {
         subtitle: "WHAT'S NEXT?",

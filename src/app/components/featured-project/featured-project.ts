@@ -50,6 +50,15 @@ export class FeaturedProject {
         tags: ['Next.js 15', 'React', 'Markdown (Remark)', 'CSS Modules', 'SSG'],
         imageUrl: 'percurso/percurso.png',
         githubLink: 'https://github.com/luigischmitt/PerCurso'
+      },
+      {
+        title: 'CineMatch',
+        date: t.cinematchDate,
+        description: t.cinematch,
+        tags: ['Angular', 'SCSS', 'TypeScript', 'Laravel', 'PHP', 'MySQL', 'Docker'],
+        imageUrl: 'cinematch/dashboard.png',
+        githubLink: 'https://github.com/Nicolas-Kleiton/CineMatch',
+        deployLink: 'https://cinematch-br.vercel.app'
       }
     ];
   }

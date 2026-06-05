@@ -41,9 +41,14 @@
             <div class="tags">
               <span *ngFor="let tag of project.tags">{{ tag }}</span>
             </div>
-            <a [href]="project.githubLink" target="_blank" class="view-project">
-              {{ t.projects.viewRepo }} <span class="arrow">→</span>
-            </a>
+            <div style="display: flex; gap: 1.5rem; align-items: center;">
+              <a *ngIf="project.githubLink" [href]="project.githubLink" target="_blank" class="view-project">
+                {{ t.projects.viewRepo }} <span class="arrow">→</span>
+              </a>
+              <a *ngIf="project.deployLink" [href]="project.deployLink" target="_blank" class="view-project">
+                {{ t.projects.viewLive }} <span class="arrow">↗</span>
+              </a>
+            </div>
           </div>
         </div>
 
