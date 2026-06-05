@@ -95,7 +95,10 @@
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+  will-change: transform, border-color, box-shadow;
   display: flex;
   flex-direction: column;
 
@@ -173,7 +176,7 @@
   }
 
   .card-img {
-    height: 260px;
+    height: 220px;
     width: 100%;
     object-fit: cover;
     object-position: top center; 
@@ -181,18 +184,18 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
     @media (max-width: 576px) {
-      height: 200px;
+      height: 180px;
     }
   }
 
   .card-content {
-    padding: 35px;
+    padding: 25px;
     flex: 1;
     display: flex;
     flex-direction: column;
 
     @media (max-width: 576px) {
-      padding: 25px 20px;
+      padding: 20px 15px;
     }
 
     .project-date {
@@ -217,7 +220,7 @@
       color: #999;
       font-size: 0.95rem;
       line-height: 1.7;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       flex: 1;
 
       strong {
