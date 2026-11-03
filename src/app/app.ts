@@ -1,5 +1,4 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { Navbar } from './components/navbar/navbar';
 import { HeroComponent } from './components/hero/hero';
 import { About } from './components/about/about';
@@ -8,10 +7,8 @@ import { Contact } from './components/contact/contact';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, HeroComponent, About, FeaturedProject, Contact],
+  imports: [Navbar, HeroComponent, About, FeaturedProject, Contact],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  protected readonly title = signal('portfolio');
-}
+export class App {}
