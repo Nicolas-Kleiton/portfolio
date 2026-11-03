@@ -57,13 +57,13 @@
     }
 
     .typing-text {
-      font-size: clamp(2rem, 6.8vw, 5.5rem);
+      font-size: clamp(1.5rem, 5.8vw, 5.5rem);
       color: #ff6b00;
       white-space: nowrap;
       text-shadow: 0 0 20px rgba(255, 107, 0, 0.1); 
 
       @media (max-width: 480px) {
-        font-size: clamp(1.5rem, 5.5vw, 2rem);
+        font-size: clamp(1.1rem, 5.5vw, 2rem);
       }
     }
   }
