@@ -31,7 +31,7 @@ export class FeaturedProject {
         description: t.sisleia,
         metric: t.sisleiaMetric,
         metricLabel: t.sisleiaMetricLabel,
-        tags: ['React', 'TypeScript', 'PWA', 'Python', 'FastAPI']
+        tags: ['React', 'TypeScript', 'PWA', 'Python', 'FastAPI', 'ElevenLabs', 'LLM']
       }
     ];
   });

@@ -50,7 +50,7 @@ export class TranslationService {
       about: {
         subtitle: 'QUEM SOU EU',
         title: 'Engenheiro de Software',
-        bio: 'Estudante de Ciência da Computação na <strong>Universidade Federal da Paraíba (UFPB)</strong> e Engenheiro de Software no <strong>CEBRASPE</strong> e <strong>TRIL LAB</strong>. Atuo em todo o ciclo de vida de desenvolvimento, da validação de requisitos à arquitetura de sistemas complexos. Como <strong>Desenvolvedor Fullstack</strong>, construo interfaces de alta performance com <strong>React</strong> e backends escaláveis em <strong>Python</strong>, aproveitando <strong>modelos de IA</strong> para transformar demandas desafiadoras em soluções automatizadas e de alta eficiência.',
+        bio: 'Estudante de Ciência da Computação na <strong>Universidade Federal da Paraíba (UFPB)</strong>. Hoje sou engenheiro de software e pesquisador no <strong>TRIL LAB</strong>, laboratório de P&D da UFPB, e antes fui estagiário no <strong>CEBRASPE</strong>, onde trabalhei em dois sistemas com IA que entraram em produção. Meu foco é integrar <strong>LLMs</strong> a sistemas em <strong>Python</strong> e <strong>FastAPI</strong>, com frontend em <strong>React</strong> e TypeScript.',
         eduTitle: 'EDUCAÇÃO',
         eduHighlight: 'Bacharelado em Ciência da Computação',
         eduSubtext: 'UFPB (2024-2028)',
@@ -63,10 +63,10 @@ export class TranslationService {
         filterTools: 'Ferramentas & IA',
         filterLabel: 'Filtrar tecnologias',
         skills: {
-          frontend: 'TypeScript, React, Angular, HTML/CSS',
-          backend: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server',
+          frontend: 'TypeScript, React, Angular, TailwindCSS, HTML/CSS',
+          backend: 'Python, FastAPI, Java, Spring Boot, C#, .NET, PHP, Laravel, C, PostgreSQL, SQL Server, MySQL',
           infra: 'Docker, Git, Arquitetura Limpa',
-          ai: 'Integração com LLM (OpenAI), Engenharia de Prompt'
+          ai: 'LLMs (OpenAI API), ElevenLabs (Speech-to-Text), Engenharia de Prompt'
         },
         categories: {
           frontend: 'Frontend',
@@ -90,22 +90,22 @@ export class TranslationService {
         gabiaMetric: '−80%',
         gabiaMetricLabel: 'de análise manual',
         sisleiaMetric: '100%',
-        sisleiaMetricLabel: 'do fluxo automatizado',
+        sisleiaMetricLabel: 'da avaliação automatizada',
         gabiaTitle: 'GabIA — Análise de Recursos',
-        gabiaDate: '03/2025 — Presente',
-        gabia: 'Desenvolvimento de ponta a ponta, desde requisitos até manutenção. Implementei Clean Architecture para <strong>reduzir a análise manual do auditor em 80%</strong>. Desenvolvi pipelines Python com OpenAI e Engenharia de Prompt para categorização de documentos.',
+        gabiaDate: '03/2025 — 08/2026',
+        gabia: 'Sistema que ajuda auditores na análise de recursos. Escrevi os pipelines em Python que processam os documentos em lote com a API da OpenAI e usei engenharia de prompt para deixar a categorização mais precisa, o que <strong>reduziu em 80% o tempo de análise manual</strong>. Trabalhei do levantamento de requisitos à manutenção, incluindo a arquitetura do frontend.',
         sisleiaTitle: 'SISLEIA — Avaliação de Leitura',
         sisleiaDate: '09/2025 — 05/2026',
-        sisleia: 'Arquitetura de um PWA de alta performance para análise de fluência em leitura. <strong>Automatizei 100% do fluxo de avaliação</strong>, reduzindo o tempo de análise de áudio de horas para segundos por aluno via integração de IA e FastAPI.',
+        sisleia: 'PWA que avalia a fluência de leitura de alunos a partir de gravações de áudio. <strong>Automatizou 100% da avaliação</strong> e reduziu a análise de minutos para segundos por aluno. Com a equipe, implementei e testei a etapa de IA: os áudios são transcritos pelo ElevenLabs e o texto vai para um LLM, que faz a análise de fluência. No backend, integrei essa etapa à plataforma e conectei o login ao OAuth2 do ecossistema Sinapse. Também estruturei o frontend.',
         percursoDate: '11/2024 — 12/2024',
-        percurso: 'Uma plataforma colaborativa open-source desenvolvida por uma equipe de 3 para centralizar materiais de estudo para estudantes universitários. Trabalhamos juntos em toda a aplicação, construindo a arquitetura escalável com Next.js dynamic routing e um sistema recursivo de parsing de Markdown. Minhas contribuições abrangeram todo o stack, desde lógica de roteamento e mapeamento de dados até a implementação da UI responsiva e otimização de desempenho com Geração de Site Estático (SSG).',
+        percurso: 'Plataforma open-source criada por uma equipe de 3 pessoas para ajudar estudantes do Centro de Informática da UFPB a planejar o curso e achar material de estudo. O conteúdo fica em Markdown no GitHub, e o site, feito em Next.js com geração estática (SSG), se atualiza sozinho quando o repositório muda. Trabalhei em todo o stack: rotas dinâmicas, parsing de Markdown e interface responsiva.',
         cinematchDate: '05/2026 — 06/2026',
-        cinematch: 'Uma plataforma web full-stack projetada para organizar e gerenciar sessões de cinema. Construí todo o sistema desenvolvendo um catálogo com busca, uma roleta interativa para sorteio de filmes e um histórico pessoal de avaliações. Para simplificar o teste da aplicação, implementei um modo de visitante, operando em paralelo à autenticação segura com JWT para usuários registrados.'
+        cinematch: 'Aplicação web full-stack para organizar sessões de cinema. Fiz o sistema inteiro: catálogo com busca, roleta para sortear filmes e histórico pessoal de avaliações. Para facilitar os testes, criei um modo visitante que funciona junto com a autenticação via JWT para usuários cadastrados.'
       },
       contact: {
         subtitle: 'QUAL O PRÓXIMO PASSO?',
         title: 'Vamos trabalhar juntos.',
-        description: 'Atualmente estou aberto a novas oportunidades. Se você tiver alguma dúvida ou apenas quiser dizer um oi, minha caixa de entrada está sempre aberta. Farei o meu melhor para responder!',
+        description: 'Estou aberto a oportunidades de estágio e a projetos com IA. Se quiser conversar, é só mandar um e-mail.',
         sayHello: 'Diga Olá',
         copyright: 'Desenhado & Desenvolvido por Nicolas Kleiton © 2026',
         resume: 'Currículo'
@@ -137,7 +137,7 @@ export class TranslationService {
       about: {
         subtitle: 'WHO I AM',
         title: 'Software Engineer',
-        bio: 'Computer Science student at <strong>Federal University of Paraíba (UFPB)</strong> and Software Engineer at <strong>CEBRASPE</strong> and <strong>TRIL LAB</strong>. I operate across the full development lifecycle—from requirement validation to the architecture of complex systems. As a <strong>Fullstack Developer</strong>, I build high-performance interfaces with <strong>React</strong> and scalable backends in <strong>Python</strong>, leveraging <strong>AI models</strong> to transform challenging demands into automated, high-efficiency solutions.',
+        bio: 'Computer Science student at the <strong>Federal University of Paraíba (UFPB)</strong>. I currently work as a software engineer and researcher at <strong>TRIL LAB</strong>, an R&D lab at UFPB, and before that I was an intern at <strong>CEBRASPE</strong>, where I worked on two AI systems that went into production. My focus is integrating <strong>LLMs</strong> into <strong>Python</strong> and <strong>FastAPI</strong> systems, with a <strong>React</strong> and TypeScript frontend.',
         eduTitle: 'EDUCATION',
         eduHighlight: 'B.S. in Computer Science',
         eduSubtext: 'UFPB (2024-2028)',
@@ -150,10 +150,10 @@ export class TranslationService {
         filterTools: 'Tools & AI',
         filterLabel: 'Filter technologies',
         skills: {
-          frontend: 'TypeScript, React, Angular, HTML/CSS',
-          backend: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server',
+          frontend: 'TypeScript, React, Angular, TailwindCSS, HTML/CSS',
+          backend: 'Python, FastAPI, Java, Spring Boot, C#, .NET, PHP, Laravel, C, PostgreSQL, SQL Server, MySQL',
           infra: 'Docker, Git, Clean Architecture',
-          ai: 'LLM Integration (OpenAI), Prompt Engineering'
+          ai: 'LLMs (OpenAI API), ElevenLabs (Speech-to-Text), Prompt Engineering'
         },
         categories: {
           frontend: 'Frontend',
@@ -177,22 +177,22 @@ export class TranslationService {
         gabiaMetric: '−80%',
         gabiaMetricLabel: 'manual analysis',
         sisleiaMetric: '100%',
-        sisleiaMetricLabel: 'automated workflow',
-        gabiaTitle: 'GabIA — Resource Analysis',
-        gabiaDate: '03/2025 — Present',
-        gabia: 'Full-cycle development from requirements to maintenance. Implemented Clean Architecture to <strong>reduce manual auditor analysis by 80%</strong>. Built Python pipelines with OpenAI and Prompt Engineering for document categorization.',
+        sisleiaMetricLabel: 'of assessment automated',
+        gabiaTitle: 'GabIA — Appeals Analysis',
+        gabiaDate: '03/2025 — 08/2026',
+        gabia: 'A system that helps auditors analyze appeals. I wrote the Python pipelines that batch-process the documents with the OpenAI API and used prompt engineering to make the categorization more accurate, which <strong>cut manual analysis time by 80%</strong>. I worked from requirements gathering to maintenance, including the frontend architecture.',
         sisleiaTitle: 'SISLEIA — Reading Evaluation',
         sisleiaDate: '09/2025 — 05/2026',
-        sisleia: 'Architected a high-performance PWA for reading fluency analysis. <strong>Automated 100% of the evaluation flow</strong>, reducing audio analysis time from hours to seconds per student via AI integration and FastAPI.',
+        sisleia: 'A PWA that assesses students\' reading fluency from audio recordings. It <strong>automated 100% of the assessment</strong> and cut the analysis from minutes to seconds per student. With the team, I implemented and tested the AI stage: the recordings are transcribed by ElevenLabs and the text goes to an LLM, which analyzes the fluency. On the backend, I integrated this stage into the platform and connected the login to the Sinapse ecosystem\'s OAuth2. I also structured the frontend.',
         percursoDate: '11/2024 — 12/2024',
-        percurso: 'An open-source collaborative platform developed by a team of 3 to centralize study materials for university students. We worked together across the entire application, building the scalable architecture with Next.js dynamic routing and a recursive Markdown parsing system. My contributions spanned the full stack, from routing logic and data mapping to implementing the responsive UI and optimizing performance with Static Site Generation (SSG).',
+        percurso: 'An open-source platform built by a team of 3 to help students at the UFPB Informatics Center plan their degree and find study material. The content lives in Markdown on GitHub, and the site, built with Next.js and static site generation (SSG), updates itself whenever the repository changes. I worked across the whole stack: dynamic routes, Markdown parsing and the responsive interface.',
         cinematchDate: '05/2026 — 06/2026',
-        cinematch: 'A full-stack web platform designed to organize and manage movie sessions. I built the entire system by developing a searchable catalog, an interactive roulette for random movie selections, and a personal evaluation history. To simplify application testing, I implemented a guest mode, operating alongside secure JWT authentication for registered users.'
+        cinematch: 'A full-stack web app for organizing movie sessions. I built the entire system: a searchable catalog, a roulette to draw movies and a personal rating history. To make testing easier, I created a guest mode that works alongside JWT authentication for registered users.'
       },
       contact: {
         subtitle: "WHAT'S NEXT?",
         title: "Let's work together.",
-        description: 'I am currently open to new opportunities. Whether you have a question or just want to say hi, my inbox is always open. I\'ll try my best to get back to you!',
+        description: 'I am open to internship opportunities and AI projects. If you want to talk, just send me an email.',
         sayHello: 'Say Hello',
         copyright: 'Designed & Built by Nicolas Kleiton © 2026',
         resume: 'Resume'
