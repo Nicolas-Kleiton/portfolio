@@ -48,7 +48,9 @@ export class FeaturedProject {
         award: this.translationService.language() === 'pt' ? '🏆 2º Lugar Hackathon' : '🏆 2nd Place Hackathon',
         description: t.percurso,
         tags: ['Next.js 15', 'React', 'Markdown (Remark)', 'CSS Modules', 'SSG'],
-        imageUrl: 'percurso/percurso.png',
+        imageUrl: 'percurso/percurso.webp',
+        imageWidth: 1200,
+        imageHeight: 675,
         githubLink: 'https://github.com/luigischmitt/PerCurso'
       },
       {
@@ -56,7 +58,9 @@ export class FeaturedProject {
         date: t.cinematchDate,
         description: t.cinematch,
         tags: ['Angular', 'SCSS', 'TypeScript', 'Laravel', 'PHP', 'MySQL', 'Docker'],
-        imageUrl: 'cinematch/dashboard.png',
+        imageUrl: 'cinematch/dashboard.webp',
+        imageWidth: 1200,
+        imageHeight: 597,
         githubLink: 'https://github.com/Nicolas-Kleiton/CineMatch',
         deployLink: 'https://cinematch-br.vercel.app'
       }

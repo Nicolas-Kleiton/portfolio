@@ -31,7 +31,8 @@
       <div class="projects-grid">
         <div class="project-card" *ngFor="let project of personalProjects">
           <div class="img-wrapper">
-            <img [src]="project.imageUrl" alt="{{ project.title }} Preview" class="card-img">
+            <img [src]="project.imageUrl" [width]="project.imageWidth" [height]="project.imageHeight"
+                 alt="{{ project.title }} Preview" class="card-img" loading="lazy" decoding="async">
             <div class="award-badge" *ngIf="project.award">{{ project.award }}</div>
           </div>
           <div class="card-content">
