@@ -87,9 +87,10 @@ export class Navbar implements OnDestroy {
     this.activeSection.set(path);
     const element = document.getElementById(path);
     if (element) {
+      const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
       window.scrollTo({
         top: element.getBoundingClientRect().top + window.scrollY,
-        behavior: 'smooth',
+        behavior: reduceMotion ? 'auto' : 'smooth',
       });
     }
     this.closeMenu();

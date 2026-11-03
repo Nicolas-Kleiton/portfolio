@@ -1,16 +1,23 @@
 <section id="home" class="hero-section">
-  <div class="mouse-glow" #glow></div>
+  <div class="mouse-glow" #glow aria-hidden="true"></div>
 
   <div class="hero-container">
-    <p class="intro-greeting">{{ t.hero.greeting }}</p>
+    <p class="intro-greeting" aria-hidden="true">{{ t.hero.greeting }}</p>
     <h1 class="background-text">
-      {{ t.hero.imA }} <br> 
-      <span class="typing-text">
-        {{ displayText() }}<span class="cursor">|</span>
+      <span class="sr-only">{{ t.hero.heading }}</span>
+      <span aria-hidden="true">
+        {{ t.hero.imA }} <br>
+        <span class="typing-text">
+          @if (reduceMotion) {
+            {{ t.hero.roles[0] }}
+          } @else {
+            {{ displayText() }}<span class="cursor">|</span>
+          }
+        </span>
       </span>
     </h1>
   </div>
-  <div class="scroll-indicator">
+  <div class="scroll-indicator" aria-hidden="true">
     <div class="mouse">
       <div class="wheel"></div>
     </div>

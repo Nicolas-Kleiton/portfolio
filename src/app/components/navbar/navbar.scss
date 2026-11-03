@@ -36,10 +36,16 @@
             color: #ff6b00;
         }
 
+        .nav-links a:not(.active):not(:hover) {
+            color: #888;
+        }
+
         .lang-toggle {
             border-color: rgba(255, 255, 255, 0.15);
             
             span {
+                color: #888;
+
                 &.separator {
                     color: rgba(255, 255, 255, 0.15);
                 }
@@ -74,7 +80,7 @@
             border-color: rgba(0, 0, 0, 0.1);
             
             span {
-                color: #888;
+                color: #6b6b6b;
                 
                 &.separator {
                     color: rgba(0, 0, 0, 0.15);
@@ -143,7 +149,7 @@
 
     a {
         text-decoration: none;
-        color: #888;
+        color: #6b6b6b;
         font-weight: 500;
         font-size: 0.9rem;
         text-transform: uppercase;
@@ -224,7 +230,7 @@
     z-index: 1000;
 
     span {
-        color: #888;
+        color: #6b6b6b;
         transition: color 0.3s ease;
 
         &.separator {

@@ -22,6 +22,11 @@ describe('HeroComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should expose the name and roles in the main heading', () => {
+    const h1: HTMLElement = fixture.nativeElement.querySelector('h1');
+    expect(h1.querySelector('.sr-only')?.textContent).toContain('Nicolas Kleiton');
+  });
+
   it('should start typing the first role', () => {
     expect(component.displayText()).toBe('D');
   });

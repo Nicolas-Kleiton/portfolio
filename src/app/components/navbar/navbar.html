@@ -1,14 +1,15 @@
-<nav class="navbar" [class.scrolled]="isScrolled() && !isContactSection()" [class.scrolled-light]="isContactSection()" [class.menu-open]="isMenuOpen()">
+<nav class="navbar" [attr.aria-label]="translationService.t().navbar.mainNav" [class.scrolled]="isScrolled() && !isContactSection()" [class.scrolled-light]="isContactSection()" [class.menu-open]="isMenuOpen()">
     <div class="logo">
          &lt;/&gt; Nicolas Kleiton
     </div>
 
-    <ul class="nav-links" [class.active]="isMenuOpen()">
+    <ul id="nav-menu" class="nav-links" [class.active]="isMenuOpen()">
         @for (link of navLinks(); track link.path) {
           <li>
-            <a href="javascript:void(0)"
+            <a [href]="'#' + link.path"
                (click)="scrollToSection($event, link.path)"
-               [class.active]="activeSection() === link.path">
+               [class.active]="activeSection() === link.path"
+               [attr.aria-current]="activeSection() === link.path ? 'true' : null">
                {{ link.label }}
             </a>
           </li>
@@ -16,16 +17,20 @@
     </ul>
 
     <div class="nav-actions">
-      <button class="lang-toggle" (click)="translationService.toggleLanguage()">
-        <span [class.active]="translationService.language() === 'pt'">PT</span>
-        <span class="separator">/</span>
-        <span [class.active]="translationService.language() === 'en'">EN</span>
+      <button type="button" class="lang-toggle" (click)="translationService.toggleLanguage()"
+              [attr.aria-label]="translationService.t().navbar.switchLanguage">
+        <span [class.active]="translationService.language() === 'pt'" aria-hidden="true">PT</span>
+        <span class="separator" aria-hidden="true">/</span>
+        <span [class.active]="translationService.language() === 'en'" aria-hidden="true">EN</span>
       </button>
 
-      <button class="menu-toggle" [class.active]="isMenuOpen()" (click)="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+      <button type="button" class="menu-toggle" [class.active]="isMenuOpen()" (click)="toggleMenu()"
+              aria-controls="nav-menu"
+              [attr.aria-expanded]="isMenuOpen()"
+              [attr.aria-label]="isMenuOpen() ? translationService.t().navbar.closeMenu : translationService.t().navbar.openMenu">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </button>
     </div>
 </nav>

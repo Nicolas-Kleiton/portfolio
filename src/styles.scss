@@ -1,19 +1,51 @@
 html {
   scroll-behavior: smooth;
-  scrollbar-width: none; 
-}
-
-html::-webkit-scrollbar {
-  display: none;
+  // Thin, theme-matching scrollbar (kept visible so users can see where they are)
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 107, 0, 0.5) transparent;
 }
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
     background-color: #f9f9f9;
+}
+
+// Visible keyboard focus across the site
+:focus-visible {
+  outline: 2px solid #ff6b00;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+// Content available to screen readers and search engines only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -39,11 +39,11 @@
     <div class="skills-section">
       <div class="skills-header">
         <h4>{{ t.about.techStack }}</h4>
-        <div class="filter-menu">
-          <button [class.active]="activeFilter() === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
-          <button [class.active]="activeFilter() === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
-          <button [class.active]="activeFilter() === 'backend'" (click)="setFilter('backend')">{{ t.about.filterBackend }}</button>
-          <button [class.active]="activeFilter() === 'tools'" (click)="setFilter('tools')">{{ t.about.filterTools }}</button>
+        <div class="filter-menu" role="group" [attr.aria-label]="t.about.filterLabel">
+          <button type="button" [class.active]="activeFilter() === 'all'" [attr.aria-pressed]="activeFilter() === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
+          <button type="button" [class.active]="activeFilter() === 'frontend'" [attr.aria-pressed]="activeFilter() === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
+          <button type="button" [class.active]="activeFilter() === 'backend'" [attr.aria-pressed]="activeFilter() === 'backend'" (click)="setFilter('backend')">{{ t.about.filterBackend }}</button>
+          <button type="button" [class.active]="activeFilter() === 'tools'" [attr.aria-pressed]="activeFilter() === 'tools'" (click)="setFilter('tools')">{{ t.about.filterTools }}</button>
         </div>
       </div>
 
@@ -64,8 +64,8 @@
           {{ t.about.downloadCv }} <span class="arrow">↓</span>
         </a>
         <div class="mini-social">
-          <a href="https://github.com/Nicolas-Kleiton" target="_blank">{{ t.about.github }}</a>
-          <a href="https://linkedin.com/in/nicolaskleiton" target="_blank">{{ t.about.linkedin }}</a>
+          <a href="https://github.com/Nicolas-Kleiton" target="_blank" rel="noopener noreferrer">{{ t.about.github }}</a>
+          <a href="https://linkedin.com/in/nicolaskleiton" target="_blank" rel="noopener noreferrer">{{ t.about.linkedin }}</a>
         </div>
       </div>
     </div>

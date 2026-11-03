@@ -28,8 +28,13 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     glow.style.top = `${e.clientY}px`;
   };
 
+  // When set, the template shows the first role statically instead of the typewriter
+  readonly reduceMotion = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+
   ngOnInit() {
-    this.handleTyping();
+    if (!this.reduceMotion) {
+      this.handleTyping();
+    }
   }
 
   ngAfterViewInit() {

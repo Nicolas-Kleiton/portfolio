@@ -21,12 +21,17 @@ export class TranslationService {
         home: 'Início',
         about: 'Sobre Mim',
         projects: 'Projetos',
-        contact: 'Contato'
+        contact: 'Contato',
+        mainNav: 'Navegação principal',
+        openMenu: 'Abrir menu',
+        closeMenu: 'Fechar menu',
+        switchLanguage: 'Mudar idioma para inglês'
       },
       hero: {
         greeting: '👋, meu nome é Nicolas e',
         imA: 'EU SOU',
-        roles: ['DESENVOLVEDOR FULLSTACK', 'ENGENHEIRO DE SOFTWARE']
+        roles: ['DESENVOLVEDOR FULLSTACK', 'ENGENHEIRO DE SOFTWARE'],
+        heading: 'Nicolas Kleiton, Desenvolvedor Fullstack e Engenheiro de Software'
       },
       about: {
         subtitle: 'QUEM SOU EU',
@@ -42,6 +47,7 @@ export class TranslationService {
         filterFrontend: 'Frontend',
         filterBackend: 'Backend',
         filterTools: 'Ferramentas & IA',
+        filterLabel: 'Filtrar tecnologias',
         skills: {
           frontend: 'TypeScript, React, Angular, HTML/CSS',
           backend: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server',
@@ -89,12 +95,17 @@ export class TranslationService {
         home: 'Home',
         about: 'About Me',
         projects: 'Projects',
-        contact: 'Contact'
+        contact: 'Contact',
+        mainNav: 'Main navigation',
+        openMenu: 'Open menu',
+        closeMenu: 'Close menu',
+        switchLanguage: 'Switch language to Portuguese'
       },
       hero: {
         greeting: '👋, my name is Nicolas and',
         imA: "I'M A",
-        roles: ['FULLSTACK DEVELOPER', 'SOFTWARE ENGINEER']
+        roles: ['FULLSTACK DEVELOPER', 'SOFTWARE ENGINEER'],
+        heading: 'Nicolas Kleiton, Fullstack Developer and Software Engineer'
       },
       about: {
         subtitle: 'WHO I AM',
@@ -110,6 +121,7 @@ export class TranslationService {
         filterFrontend: 'Frontend',
         filterBackend: 'Backend',
         filterTools: 'Tools & AI',
+        filterLabel: 'Filter technologies',
         skills: {
           frontend: 'TypeScript, React, Angular, HTML/CSS',
           backend: 'C, Java, PHP, Laravel, Python, FastAPI, MySQL, SQL Server',
