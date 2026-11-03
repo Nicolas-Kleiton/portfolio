@@ -8,10 +8,10 @@
       <span aria-hidden="true">
         {{ t.hero.imA }} <br>
         <span class="typing-text">
-          @if (reduceMotion) {
+          @if (reduceMotion()) {
             {{ t.hero.roles[0] }}
           } @else {
-            {{ displayText() }}<span class="cursor">|</span>
+            {{ displayText() }}<noscript>{{ t.hero.roles[0] }}</noscript><span class="cursor">|</span>
           }
         </span>
       </span>

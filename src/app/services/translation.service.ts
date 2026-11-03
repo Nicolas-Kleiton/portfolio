@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
 export type Language = 'pt' | 'en';
@@ -20,7 +20,8 @@ function detectLanguage(): Language {
   providedIn: 'root'
 })
 export class TranslationService {
-  readonly language = signal<Language>(detectLanguage());
+  // Prerendered HTML is always Portuguese; the browser then applies the visitor's language
+  readonly language = signal<Language>(isPlatformBrowser(inject(PLATFORM_ID)) ? detectLanguage() : 'pt');
 
   readonly translations = {
     pt: {

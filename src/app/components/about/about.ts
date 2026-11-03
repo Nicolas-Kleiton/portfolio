@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, computed, inject, signal, viewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, afterNextRender, computed, inject, signal, viewChild } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 type SkillFilter = 'all' | 'frontend' | 'backend' | 'tools';
@@ -8,7 +8,7 @@ type SkillFilter = 'all' | 'frontend' | 'backend' | 'tools';
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
-export class About implements AfterViewInit, OnDestroy {
+export class About implements OnDestroy {
   readonly translationService = inject(TranslationService);
 
   get t() {
@@ -23,7 +23,11 @@ export class About implements AfterViewInit, OnDestroy {
   readonly isRevealed = signal(false);
   readonly isIdle = signal(false);
 
-  ngAfterViewInit() {
+  constructor() {
+    afterNextRender(() => this.observeDivider());
+  }
+
+  private observeDivider() {
     if (!('IntersectionObserver' in window)) {
       this.isRevealed.set(true);
       this.isIdle.set(true);

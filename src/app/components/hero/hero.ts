@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, inject, signal, viewChild } from '@angular/core';
+import { Component, DestroyRef, ElementRef, OnDestroy, afterNextRender, inject, signal, viewChild } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { TranslationService } from '../../services/translation.service';
   templateUrl: './hero.html',
   styleUrl: './hero.scss'
 })
-export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeroComponent implements OnDestroy {
   readonly translationService = inject(TranslationService);
 
   get t() {
@@ -29,21 +29,23 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   // Shows the first role statically, without the typewriter
-  readonly reduceMotion = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+  readonly reduceMotion = signal(false);
 
-  ngOnInit() {
-    if (!this.reduceMotion) {
-      this.handleTyping();
-    }
-  }
-
-  ngAfterViewInit() {
-    document.addEventListener('mousemove', this.onMouseMove, { passive: true });
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+    // Browser only: the prerender must not wait on the endless typing loop
+    afterNextRender(() => {
+      this.reduceMotion.set(!!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
+      if (!this.reduceMotion()) {
+        this.handleTyping();
+      }
+      document.addEventListener('mousemove', this.onMouseMove, { passive: true });
+      destroyRef.onDestroy(() => document.removeEventListener('mousemove', this.onMouseMove));
+    });
   }
 
   ngOnDestroy() {
     clearTimeout(this.typingTimer);
-    document.removeEventListener('mousemove', this.onMouseMove);
   }
 
   private handleTyping() {

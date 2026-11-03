@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, computed, inject, signal } from '@angular/core';
+import { Component, DestroyRef, DOCUMENT, HostListener, OnDestroy, afterNextRender, computed, inject, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 const SECTIONS = ['home', 'about', 'projects', 'contact'] as const;
@@ -10,6 +10,7 @@ const SECTIONS = ['home', 'about', 'projects', 'contact'] as const;
 })
 export class Navbar implements OnDestroy {
   readonly translationService = inject(TranslationService);
+  private readonly document = inject(DOCUMENT);
 
   readonly navLinks = computed(() => {
     const t = this.translationService.t().navbar;
@@ -45,12 +46,15 @@ export class Navbar implements OnDestroy {
   };
 
   constructor() {
-    window.addEventListener('scroll', this.onWindowScroll, { passive: true });
+    const destroyRef = inject(DestroyRef);
+    afterNextRender(() => {
+      window.addEventListener('scroll', this.onWindowScroll, { passive: true });
+      destroyRef.onDestroy(() => window.removeEventListener('scroll', this.onWindowScroll));
+    });
   }
 
   ngOnDestroy() {
-    window.removeEventListener('scroll', this.onWindowScroll);
-    document.body.style.overflow = '';
+    this.document.body.style.overflow = '';
   }
 
   toggleMenu() {
@@ -66,7 +70,7 @@ export class Navbar implements OnDestroy {
   }
 
   private updateBodyScroll() {
-    document.body.style.overflow = this.isMenuOpen() ? 'hidden' : '';
+    this.document.body.style.overflow = this.isMenuOpen() ? 'hidden' : '';
   }
 
   @HostListener('window:keydown.escape')
