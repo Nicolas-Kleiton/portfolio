@@ -26,8 +26,8 @@ export class TranslationService {
     pt: {
       meta: {
         htmlLang: 'pt-BR',
-        title: 'Nicolas Kleiton | Engenheiro de Software',
-        description: 'Portfólio de Nicolas Kleiton, Engenheiro de Software com atuação fullstack. Interfaces com React e Angular, backends em Python e soluções com IA.'
+        title: 'Nicolas Kleiton | Engenheiro de Software e IA',
+        description: 'Estudante de Ciência da Computação na UFPB e Engenheiro de Software. Desenvolvo sistemas com IA, LLMs, Python e FastAPI.'
       },
       navbar: {
         home: 'Início',
@@ -113,8 +113,8 @@ export class TranslationService {
     en: {
       meta: {
         htmlLang: 'en',
-        title: 'Nicolas Kleiton | Software Engineer',
-        description: 'Portfolio of Nicolas Kleiton, Software Engineer working across the full stack. Interfaces with React and Angular, Python backends and AI-powered solutions.'
+        title: 'Nicolas Kleiton | Software and AI Engineer',
+        description: 'Computer Science student at UFPB and Software Engineer. I build systems with AI, LLMs, Python and FastAPI.'
       },
       navbar: {
         home: 'Home',

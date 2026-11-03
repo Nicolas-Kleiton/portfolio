@@ -46,16 +46,16 @@ describe('TranslationService', () => {
     const service = createService();
 
     expect(document.documentElement.lang).toBe('pt-BR');
-    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Engenheiro de Software');
+    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Engenheiro de Software e IA');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content'))
-      .toContain('Engenheiro de Software');
+      .toContain('UFPB');
 
     service.toggleLanguage();
     TestBed.tick();
 
     expect(document.documentElement.lang).toBe('en');
-    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Software Engineer');
+    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Software and AI Engineer');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content'))
-      .toContain('Software Engineer');
+      .toContain('I build systems');
   });
 });
