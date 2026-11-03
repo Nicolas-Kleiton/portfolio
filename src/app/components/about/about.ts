@@ -19,7 +19,7 @@ export class About implements AfterViewInit, OnDestroy {
   private observer?: IntersectionObserver;
   private idleTimer?: ReturnType<typeof setTimeout>;
 
-  // Signals so updates coming from the observer/timer are picked up by zoneless change detection
+  // Signals so zoneless change detection sees observer/timer updates
   readonly isRevealed = signal(false);
   readonly isIdle = signal(false);
 

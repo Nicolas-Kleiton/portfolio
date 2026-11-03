@@ -26,8 +26,7 @@ export class Navbar implements OnDestroy {
   readonly activeSection = signal<string>('home');
   readonly isContactSection = computed(() => this.activeSection() === 'contact');
 
-  // Registered manually (not via @HostListener) so scrolling only triggers
-  // change detection when one of the signals above actually changes.
+  // Passive listener instead of @HostListener: avoids change detection on every scroll
   private readonly onWindowScroll = () => {
     this.isScrolled.set(window.scrollY > 50);
 

@@ -1,6 +1,6 @@
 html {
   scroll-behavior: smooth;
-  // Thin, theme-matching scrollbar (kept visible so users can see where they are)
+  // Thin themed scrollbar
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 107, 0, 0.5) transparent;
 }
@@ -16,14 +16,14 @@ body{
     background-color: #f9f9f9;
 }
 
-// Visible keyboard focus across the site
+// Keyboard focus outline
 :focus-visible {
   outline: 2px solid #ff6b00;
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-// Content available to screen readers and search engines only
+// Visible only to screen readers
 .sr-only {
   position: absolute;
   width: 1px;

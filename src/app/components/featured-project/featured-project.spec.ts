@@ -25,7 +25,7 @@ describe('FeaturedProject', () => {
     const cardsBefore = Array.from(fixture.nativeElement.querySelectorAll('.project-card'));
     expect(cardsBefore.length).toBe(4);
 
-    // Force a full refresh, like the app-wide tick triggered by any DOM event
+    // Forces a full refresh, like an app-wide tick
     fixture.componentRef.changeDetectorRef.detectChanges();
     fixture.componentRef.changeDetectorRef.detectChanges();
 

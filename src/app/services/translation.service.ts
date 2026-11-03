@@ -168,7 +168,7 @@ export class TranslationService {
   private readonly meta = inject(Meta);
 
   constructor() {
-    // Keep <html lang>, <title> and the meta description in sync with the selected language
+    // Syncs <html lang>, <title> and meta description with the language
     effect(() => {
       const { htmlLang, title, description } = this.t().meta;
       this.document.documentElement.lang = htmlLang;

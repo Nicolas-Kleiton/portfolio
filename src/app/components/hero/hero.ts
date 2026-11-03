@@ -21,14 +21,14 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private isDeleting = false;
   private typingTimer?: ReturnType<typeof setTimeout>;
 
-  // Updated directly on the DOM: mouse moves never touch change detection
+  // Updates the DOM directly, outside change detection
   private readonly onMouseMove = (e: MouseEvent) => {
     const glow = this.glow().nativeElement;
     glow.style.left = `${e.clientX}px`;
     glow.style.top = `${e.clientY}px`;
   };
 
-  // When set, the template shows the first role statically instead of the typewriter
+  // Shows the first role statically, without the typewriter
   readonly reduceMotion = !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
   ngOnInit() {
