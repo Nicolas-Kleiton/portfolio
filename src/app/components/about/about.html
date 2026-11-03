@@ -18,34 +18,42 @@
     <div class="divider"></div>
 
     <div class="extra-info">
-      <div class="info-box" *ngFor="let edu of educationList">
-        <h4>{{ edu.title }}</h4>
-        <p class="highlight">{{ edu.highlight }}</p>
-        <p class="subtext" *ngIf="edu.subtext">{{ edu.subtext }}</p>
-      </div>
-      
-      <div class="info-box" *ngFor="let ach of achievementsList">
-        <h4>{{ ach.title }}</h4>
-        <p class="highlight">{{ ach.highlight }}</p>
-      </div>
+      @for (edu of educationList(); track edu.title) {
+        <div class="info-box">
+          <h4>{{ edu.title }}</h4>
+          <p class="highlight">{{ edu.highlight }}</p>
+          @if (edu.subtext) {
+            <p class="subtext">{{ edu.subtext }}</p>
+          }
+        </div>
+      }
+
+      @for (ach of achievementsList(); track ach.title) {
+        <div class="info-box">
+          <h4>{{ ach.title }}</h4>
+          <p class="highlight">{{ ach.highlight }}</p>
+        </div>
+      }
     </div>
 
     <div class="skills-section">
       <div class="skills-header">
         <h4>{{ t.about.techStack }}</h4>
         <div class="filter-menu">
-          <button [class.active]="activeFilter === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
-          <button [class.active]="activeFilter === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
-          <button [class.active]="activeFilter === 'backend'" (click)="setFilter('backend')">{{ t.about.filterBackend }}</button>
-          <button [class.active]="activeFilter === 'tools'" (click)="setFilter('tools')">{{ t.about.filterTools }}</button>
+          <button [class.active]="activeFilter() === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
+          <button [class.active]="activeFilter() === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
+          <button [class.active]="activeFilter() === 'backend'" (click)="setFilter('backend')">{{ t.about.filterBackend }}</button>
+          <button [class.active]="activeFilter() === 'tools'" (click)="setFilter('tools')">{{ t.about.filterTools }}</button>
         </div>
       </div>
 
       <div class="skills-grid">
-        <div class="skill-category wide" *ngFor="let skill of filteredSkills">
-          <span class="cat-name">{{ skill.category }} —</span>
-          <p>{{ skill.items }}</p>
-        </div>
+        @for (skill of filteredSkills(); track skill.category) {
+          <div class="skill-category wide">
+            <span class="cat-name">{{ skill.category }} —</span>
+            <p>{{ skill.items }}</p>
+          </div>
+        }
       </div>
     </div>
 
@@ -62,7 +70,7 @@
       </div>
     </div>
 
-    <div class="section-divider" #divider [ngClass]="{'animate-reveal': isRevealed, 'animate-idle': isIdle}">
+    <div class="section-divider" #divider [class.animate-reveal]="isRevealed()" [class.animate-idle]="isIdle()">
       <div class="line"></div>
       <div class="dot"></div>
     </div>

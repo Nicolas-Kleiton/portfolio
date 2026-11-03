@@ -1,11 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-featured-project',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './featured-project.html',
   styleUrl: './featured-project.scss',
 })
@@ -17,9 +14,8 @@ export class FeaturedProject {
   }
 
   // Enterprise Solutions: Abstract representation
-  get enterpriseProjects() {
-    // Add cast or standard indexing to allow TypeScript compiler to resolve keys dynamically
-    const t = this.t.projects as any;
+  readonly enterpriseProjects = computed(() => {
+    const t = this.translationService.t().projects;
     return [
       {
         title: t.gabiaTitle,
@@ -36,26 +32,29 @@ export class FeaturedProject {
         iconText: 'SISLEIA'
       }
     ];
-  }
+  });
 
   // Personal Projects: Visual representation
-  get personalProjects() {
-    const t = this.t.projects as any;
+  readonly personalProjects = computed(() => {
+    const t = this.translationService.t().projects;
+    const isPt = this.translationService.language() === 'pt';
     return [
       {
         title: 'PerCurso',
         date: t.percursoDate,
-        award: this.translationService.language() === 'pt' ? '🏆 2º Lugar Hackathon' : '🏆 2nd Place Hackathon',
+        award: isPt ? '🏆 2º Lugar Hackathon' : '🏆 2nd Place Hackathon',
         description: t.percurso,
         tags: ['Next.js 15', 'React', 'Markdown (Remark)', 'CSS Modules', 'SSG'],
         imageUrl: 'percurso/percurso.webp',
         imageWidth: 1200,
         imageHeight: 675,
-        githubLink: 'https://github.com/luigischmitt/PerCurso'
+        githubLink: 'https://github.com/luigischmitt/PerCurso',
+        deployLink: undefined
       },
       {
         title: 'CineMatch',
         date: t.cinematchDate,
+        award: undefined,
         description: t.cinematch,
         tags: ['Angular', 'SCSS', 'TypeScript', 'Laravel', 'PHP', 'MySQL', 'Docker'],
         imageUrl: 'cinematch/dashboard.webp',
@@ -65,5 +64,5 @@ export class FeaturedProject {
         deployLink: 'https://cinematch-br.vercel.app'
       }
     ];
-  }
+  });
 }

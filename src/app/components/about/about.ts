@@ -1,83 +1,85 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnDestroy, computed, inject, signal, viewChild } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
+
+type SkillFilter = 'all' | 'frontend' | 'backend' | 'tools';
 
 @Component({
   selector: 'app-about',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })
-export class About implements AfterViewInit {
+export class About implements AfterViewInit, OnDestroy {
   readonly translationService = inject(TranslationService);
 
   get t() {
     return this.translationService.t();
   }
 
-  @ViewChild('divider') dividerRef!: ElementRef;
-  isRevealed = false;
-  isIdle = false;
+  private readonly divider = viewChild.required<ElementRef<HTMLElement>>('divider');
+  private observer?: IntersectionObserver;
+  private idleTimer?: ReturnType<typeof setTimeout>;
+
+  // Signals so updates coming from the observer/timer are picked up by zoneless change detection
+  readonly isRevealed = signal(false);
+  readonly isIdle = signal(false);
 
   ngAfterViewInit() {
-    // Only run on the browser side, setting up the observer
-    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !this.isRevealed) {
-            this.isRevealed = true;
-            // After the 1.5s reveal animation finishes, start the idle animations
-            setTimeout(() => {
-              this.isIdle = true;
-            }, 1500);
-          }
-        });
-      }, { threshold: 0.5 });
-
-      if (this.dividerRef) {
-        observer.observe(this.dividerRef.nativeElement);
-      }
+    if (!('IntersectionObserver' in window)) {
+      this.isRevealed.set(true);
+      this.isIdle.set(true);
+      return;
     }
+
+    this.observer = new IntersectionObserver((entries) => {
+      if (entries.some(entry => entry.isIntersecting)) {
+        this.observer?.disconnect();
+        this.isRevealed.set(true);
+        // After the 1.5s reveal animation finishes, start the idle animations
+        this.idleTimer = setTimeout(() => this.isIdle.set(true), 1500);
+      }
+    }, { threshold: 0.5 });
+
+    this.observer.observe(this.divider().nativeElement);
   }
-  // Data models for dynamic rendering
-  get educationList() {
-    const aboutT = this.t.about;
+
+  ngOnDestroy() {
+    this.observer?.disconnect();
+    clearTimeout(this.idleTimer);
+  }
+
+  readonly educationList = computed(() => {
+    const aboutT = this.translationService.t().about;
     return [
       { title: aboutT.eduTitle, highlight: aboutT.eduHighlight, subtext: aboutT.eduSubtext }
     ];
-  }
+  });
 
-  get achievementsList() {
-    const aboutT = this.t.about;
+  readonly achievementsList = computed(() => {
+    const aboutT = this.translationService.t().about;
     return [
       { title: aboutT.achTitle, highlight: aboutT.achHighlight }
     ];
-  }
+  });
 
-  get allSkills() {
-    const aboutT = this.t.about;
+  private readonly allSkills = computed(() => {
+    const skills = this.translationService.t().about.skills;
     return [
-      { category: 'Frontend', items: aboutT.skills.frontend, type: 'frontend' },
-      { category: 'Backend & DB', items: aboutT.skills.backend, type: 'backend' },
-      { category: 'Infrastructure', items: aboutT.skills.infra, type: 'tools' },
-      { category: 'Artificial Intelligence', items: aboutT.skills.ai, type: 'tools' }
+      { category: 'Frontend', items: skills.frontend, type: 'frontend' },
+      { category: 'Backend & DB', items: skills.backend, type: 'backend' },
+      { category: 'Infrastructure', items: skills.infra, type: 'tools' },
+      { category: 'Artificial Intelligence', items: skills.ai, type: 'tools' }
     ];
-  }
+  });
 
-  // Current state for skill categorization
-  activeFilter: string = 'all';
+  readonly activeFilter = signal<SkillFilter>('all');
 
-  // Getter to dynamically filter skills based on state
-  get filteredSkills() {
-    if (this.activeFilter === 'all') {
-      return this.allSkills;
-    }
-    return this.allSkills.filter(skill => skill.type === this.activeFilter);
-  }
+  readonly filteredSkills = computed(() => {
+    const filter = this.activeFilter();
+    const skills = this.allSkills();
+    return filter === 'all' ? skills : skills.filter(skill => skill.type === filter);
+  });
 
-  // Updates the filter state when a tab is clicked
-  setFilter(filterType: string) {
-    this.activeFilter = filterType;
+  setFilter(filterType: SkillFilter) {
+    this.activeFilter.set(filterType);
   }
 }

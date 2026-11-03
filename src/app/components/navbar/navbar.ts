@@ -1,108 +1,97 @@
-import { CommonModule } from '@angular/common';
-import { Component, HostListener, inject, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, computed, inject, signal } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
+
+const SECTIONS = ['home', 'about', 'projects', 'contact'] as const;
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
-
 export class Navbar implements OnDestroy {
   readonly translationService = inject(TranslationService);
 
-  get navLinks() {
+  readonly navLinks = computed(() => {
     const t = this.translationService.t().navbar;
     return [
-      { label: t.home, path: 'home'},
-      { label: t.about, path: 'about'},
-      { label: t.projects, path: 'projects'},
-      { label: t.contact, path: 'contact'},
+      { label: t.home, path: 'home' },
+      { label: t.about, path: 'about' },
+      { label: t.projects, path: 'projects' },
+      { label: t.contact, path: 'contact' },
     ];
+  });
+
+  readonly isMenuOpen = signal(false);
+  readonly isScrolled = signal(false);
+  readonly activeSection = signal<string>('home');
+  readonly isContactSection = computed(() => this.activeSection() === 'contact');
+
+  // Registered manually (not via @HostListener) so scrolling only triggers
+  // change detection when one of the signals above actually changes.
+  private readonly onWindowScroll = () => {
+    this.isScrolled.set(window.scrollY > 50);
+
+    // Visual offset so the section activates slightly before reaching the top
+    const scrollPosition = window.scrollY + 150;
+    let currentSection: string = 'home';
+
+    for (const section of SECTIONS) {
+      const element = document.getElementById(section);
+      if (element && scrollPosition >= element.offsetTop) {
+        currentSection = section;
+      }
+    }
+
+    this.activeSection.set(currentSection);
+  };
+
+  constructor() {
+    window.addEventListener('scroll', this.onWindowScroll, { passive: true });
   }
 
-  isMenuOpen = false;
-  isScrolled = false;
-  isContactSection = false;
-  activeSection: string = 'home';
+  ngOnDestroy() {
+    window.removeEventListener('scroll', this.onWindowScroll);
+    document.body.style.overflow = '';
+  }
 
   toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.update(open => !open);
     this.updateBodyScroll();
   }
 
   closeMenu() {
-    if (this.isMenuOpen) {
-      this.isMenuOpen = false;
+    if (this.isMenuOpen()) {
+      this.isMenuOpen.set(false);
       this.updateBodyScroll();
     }
   }
 
   private updateBodyScroll() {
-    document.body.style.overflow = this.isMenuOpen ? 'hidden' : '';
+    document.body.style.overflow = this.isMenuOpen() ? 'hidden' : '';
   }
 
-  ngOnDestroy() {
-    document.body.style.overflow = '';
-  }
-
-  @HostListener('window:keydown', ['$event'])
-  onKeyDown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.closeMenu();
-    }
+  @HostListener('window:keydown.escape')
+  onEscape() {
+    this.closeMenu();
   }
 
   @HostListener('window:resize')
   onResize() {
-    if (window.innerWidth > 768 && this.isMenuOpen) {
+    if (window.innerWidth > 768) {
       this.closeMenu();
     }
   }
 
   scrollToSection(event: Event, path: string) {
-    event.preventDefault(); 
-    this.activeSection = path;
+    event.preventDefault();
+    this.activeSection.set(path);
     const element = document.getElementById(path);
     if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY;
-
       window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+        top: element.getBoundingClientRect().top + window.scrollY,
+        behavior: 'smooth',
       });
     }
-    // Close mobile menu after clicking
     this.closeMenu();
-  }
-
-  @HostListener('window:scroll', [])
-  onWindowScroll(){
-    // Change navbar background on scroll
-    this.isScrolled = window.scrollY > 50;
-
-    // Detect active section for scroll spy
-    const sections = ['home', 'about', 'projects', 'contact'];
-    let currentSection = 'home';
-    
-    // Visual offset so it activates slightly before reaching the top
-    const scrollPosition = window.scrollY + 150; 
-
-    for (const section of sections) {
-      const element = document.getElementById(section);
-      if (element) {
-        if (scrollPosition >= element.offsetTop) {
-          currentSection = section;
-        }
-      }
-    }
-    
-    this.activeSection = currentSection;
-    
-    // Toggle light theme if in contact section
-    this.isContactSection = currentSection === 'contact';
   }
 }

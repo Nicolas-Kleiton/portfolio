@@ -1,94 +1,70 @@
-import { Component, OnInit, OnDestroy, HostListener, ChangeDetectorRef, NgZone, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, inject, signal, viewChild } from '@angular/core';
 import { TranslationService } from '../../services/translation.service';
 
 @Component({
   selector: 'app-hero',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './hero.html',
   styleUrl: './hero.scss'
 })
-export class HeroComponent implements OnInit, OnDestroy {
+export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   readonly translationService = inject(TranslationService);
-
-  get roles(): string[] {
-    return this.translationService.t().hero.roles;
-  }
 
   get t() {
     return this.translationService.t();
   }
-  
-  // Typewriter effect state variables
-  displayText: string = '';
-  currentRoleIndex: number = 0;
-  isDeleting: boolean = false;
-  typingSpeed: number = 150;
 
-  private boundMouseMove = this.onMouseMove.bind(this);
+  private readonly glow = viewChild.required<ElementRef<HTMLElement>>('glow');
 
-  constructor(
-    private cdr: ChangeDetectorRef,
-    private zone: NgZone 
-  ) {}
+  // Typewriter effect state
+  readonly displayText = signal('');
+  private currentRoleIndex = 0;
+  private isDeleting = false;
+  private typingTimer?: ReturnType<typeof setTimeout>;
+
+  // Updated directly on the DOM: mouse moves never touch change detection
+  private readonly onMouseMove = (e: MouseEvent) => {
+    const glow = this.glow().nativeElement;
+    glow.style.left = `${e.clientX}px`;
+    glow.style.top = `${e.clientY}px`;
+  };
 
   ngOnInit() {
-    this.zone.run(() => {
-      this.handleTyping();
-    });
-
-    // Run mouse listener outside Angular to prevent global change detection on every pixel moved!
-    this.zone.runOutsideAngular(() => {
-      document.addEventListener('mousemove', this.boundMouseMove);
-    });
+    this.handleTyping();
   }
 
-  handleTyping() {
-    this.zone.run(() => {
-      const currentFullText = this.roles[this.currentRoleIndex];
-
-      if (this.isDeleting) {
-        this.displayText = currentFullText.substring(0, this.displayText.length - 1);
-        this.typingSpeed = 50; 
-      } else {
-        this.displayText = currentFullText.substring(0, this.displayText.length + 1);
-        this.typingSpeed = 150;
-      }
-
-      if (!this.isDeleting && this.displayText === currentFullText) {
-        this.typingSpeed = 2000;
-        this.isDeleting = true;
-      } else if (this.isDeleting && this.displayText === '') {
-        this.isDeleting = false;
-        this.currentRoleIndex = (this.currentRoleIndex + 1) % this.roles.length;
-        this.typingSpeed = 500;
-      }
-
-      this.cdr.detectChanges();
-      setTimeout(() => this.handleTyping(), this.typingSpeed);
-    });
+  ngAfterViewInit() {
+    document.addEventListener('mousemove', this.onMouseMove, { passive: true });
   }
 
   ngOnDestroy() {
-    document.removeEventListener('mousemove', this.boundMouseMove);
+    clearTimeout(this.typingTimer);
+    document.removeEventListener('mousemove', this.onMouseMove);
   }
 
-  @HostListener('document:visibilitychange')
-  onVisibilityChange() {
-    if (!document.hidden) {
-      this.zone.run(() => {
-        this.cdr.detectChanges();
-      });
-    }
-  }
+  private handleTyping() {
+    const roles = this.t.hero.roles;
+    const currentFullText = roles[this.currentRoleIndex % roles.length];
+    const current = this.displayText();
+    let delay: number;
 
-  // Vanilla DOM update for performance (avoids Angular Change Detection lag)
-  onMouseMove(e: MouseEvent) {
-    const glow = document.querySelector('.mouse-glow') as HTMLElement;
-    if (glow) {
-      glow.style.left = `${e.clientX}px`;
-      glow.style.top = `${e.clientY}px`;
+    if (this.isDeleting) {
+      this.displayText.set(currentFullText.substring(0, current.length - 1));
+      delay = 50;
+    } else {
+      this.displayText.set(currentFullText.substring(0, current.length + 1));
+      delay = 150;
     }
+
+    const next = this.displayText();
+    if (!this.isDeleting && next === currentFullText) {
+      this.isDeleting = true;
+      delay = 2000;
+    } else if (this.isDeleting && next === '') {
+      this.isDeleting = false;
+      this.currentRoleIndex = (this.currentRoleIndex + 1) % roles.length;
+      delay = 500;
+    }
+
+    this.typingTimer = setTimeout(() => this.handleTyping(), delay);
   }
 }

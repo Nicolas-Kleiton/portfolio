@@ -1,12 +1,12 @@
 <section id="home" class="hero-section">
-  <div class="mouse-glow"></div>
+  <div class="mouse-glow" #glow></div>
 
   <div class="hero-container">
     <p class="intro-greeting">{{ t.hero.greeting }}</p>
     <h1 class="background-text">
       {{ t.hero.imA }} <br> 
       <span class="typing-text">
-        {{ displayText }}<span class="cursor">|</span>
+        {{ displayText() }}<span class="cursor">|</span>
       </span>
     </h1>
   </div>
