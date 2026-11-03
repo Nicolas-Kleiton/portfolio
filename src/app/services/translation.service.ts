@@ -14,8 +14,8 @@ export class TranslationService {
     pt: {
       meta: {
         htmlLang: 'pt-BR',
-        title: 'Nicolas Kleiton | Desenvolvedor Fullstack',
-        description: 'Portfólio de Nicolas Kleiton, Desenvolvedor Fullstack e Engenheiro de Software. Interfaces com React e Angular, backends em Python e soluções com IA.'
+        title: 'Nicolas Kleiton | Engenheiro de Software',
+        description: 'Portfólio de Nicolas Kleiton, Engenheiro de Software com atuação fullstack. Interfaces com React e Angular, backends em Python e soluções com IA.'
       },
       navbar: {
         home: 'Início',
@@ -30,12 +30,12 @@ export class TranslationService {
       hero: {
         greeting: '👋, meu nome é Nicolas e',
         imA: 'EU SOU',
-        roles: ['DESENVOLVEDOR FULLSTACK', 'ENGENHEIRO DE SOFTWARE'],
-        heading: 'Nicolas Kleiton, Desenvolvedor Fullstack e Engenheiro de Software'
+        roles: ['ENGENHEIRO DE SOFTWARE', 'DESENVOLVEDOR FULLSTACK'],
+        heading: 'Nicolas Kleiton, Engenheiro de Software e Desenvolvedor Fullstack'
       },
       about: {
         subtitle: 'QUEM SOU EU',
-        title: 'Desenvolvedor Fullstack',
+        title: 'Engenheiro de Software',
         bio: 'Estudante de Ciência da Computação na <strong>Universidade Federal da Paraíba (UFPB)</strong> e Engenheiro de Software no <strong>CEBRASPE</strong> e <strong>TRIL LAB</strong>. Atuo em todo o ciclo de vida de desenvolvimento, da validação de requisitos à arquitetura de sistemas complexos. Como <strong>Desenvolvedor Fullstack</strong>, construo interfaces de alta performance com <strong>React</strong> e backends escaláveis em <strong>Python</strong>, aproveitando <strong>modelos de IA</strong> para transformar demandas desafiadoras em soluções automatizadas e de alta eficiência.',
         eduTitle: 'EDUCAÇÃO',
         eduHighlight: 'Bacharelado em Ciência da Computação',
@@ -88,8 +88,8 @@ export class TranslationService {
     en: {
       meta: {
         htmlLang: 'en',
-        title: 'Nicolas Kleiton | Fullstack Developer',
-        description: 'Portfolio of Nicolas Kleiton, Fullstack Developer and Software Engineer. Interfaces with React and Angular, Python backends and AI-powered solutions.'
+        title: 'Nicolas Kleiton | Software Engineer',
+        description: 'Portfolio of Nicolas Kleiton, Software Engineer working across the full stack. Interfaces with React and Angular, Python backends and AI-powered solutions.'
       },
       navbar: {
         home: 'Home',
@@ -104,12 +104,12 @@ export class TranslationService {
       hero: {
         greeting: '👋, my name is Nicolas and',
         imA: "I'M A",
-        roles: ['FULLSTACK DEVELOPER', 'SOFTWARE ENGINEER'],
-        heading: 'Nicolas Kleiton, Fullstack Developer and Software Engineer'
+        roles: ['SOFTWARE ENGINEER', 'FULLSTACK DEVELOPER'],
+        heading: 'Nicolas Kleiton, Software Engineer and Fullstack Developer'
       },
       about: {
         subtitle: 'WHO I AM',
-        title: 'Fullstack Developer',
+        title: 'Software Engineer',
         bio: 'Computer Science student at <strong>Federal University of Paraíba (UFPB)</strong> and Software Engineer at <strong>CEBRASPE</strong> and <strong>TRIL LAB</strong>. I operate across the full development lifecycle—from requirement validation to the architecture of complex systems. As a <strong>Fullstack Developer</strong>, I build high-performance interfaces with <strong>React</strong> and scalable backends in <strong>Python</strong>, leveraging <strong>AI models</strong> to transform challenging demands into automated, high-efficiency solutions.',
         eduTitle: 'EDUCATION',
         eduHighlight: 'B.S. in Computer Science',

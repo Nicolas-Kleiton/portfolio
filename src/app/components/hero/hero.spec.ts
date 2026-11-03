@@ -28,6 +28,6 @@ describe('HeroComponent', () => {
   });
 
   it('should start typing the first role', () => {
-    expect(component.displayText()).toBe('D');
+    expect(component.displayText()).toBe('E');
   });
 });

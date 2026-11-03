@@ -13,9 +13,9 @@ describe('TranslationService', () => {
 
   it('should sync html lang, title and description with the default language', () => {
     expect(document.documentElement.lang).toBe('pt-BR');
-    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Desenvolvedor Fullstack');
+    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Engenheiro de Software');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content'))
-      .toContain('Desenvolvedor Fullstack');
+      .toContain('Engenheiro de Software');
   });
 
   it('should update document metadata when the language changes', () => {
@@ -23,8 +23,8 @@ describe('TranslationService', () => {
     TestBed.tick();
 
     expect(document.documentElement.lang).toBe('en');
-    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Fullstack Developer');
+    expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Software Engineer');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content'))
-      .toContain('Fullstack Developer');
+      .toContain('Software Engineer');
   });
 });
