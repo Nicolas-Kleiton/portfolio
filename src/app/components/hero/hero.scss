@@ -58,7 +58,7 @@
 
     .typing-text {
       font-size: clamp(1.5rem, 5.8vw, 5.5rem);
-      color: #ff6b00;
+      color: var(--accent-large);
       white-space: nowrap;
       text-shadow: 0 0 20px rgba(255, 107, 0, 0.1); 
 
@@ -71,7 +71,7 @@
 
 // Thin, blinking typewriter cursor
 .cursor {
-  color: #ff6b00;
+  color: var(--accent-large);
   animation: blink 0.7s infinite;
   margin-left: 2px;
   font-weight: 300;

@@ -26,7 +26,7 @@
   margin-bottom: 50px;
   
   .subtitle {
-    color: #ff6b00;
+    color: var(--accent-strong);
     letter-spacing: 3px;
     font-weight: 700;
     font-size: 0.8rem;
@@ -62,7 +62,7 @@
   .btn-email {
     display: inline-block;
     padding: 18px 45px;
-    background-color: #ff6b00;
+    background-color: var(--accent-strong);
     color: #FAF9F6; 
     text-decoration: none;
     font-size: 1.1rem;
@@ -75,8 +75,8 @@
     
     &:hover {
       background-color: transparent; 
-      color: #ff6b00;
-      border-color: #ff6b00;
+      color: var(--accent-strong);
+      border-color: var(--accent-strong);
       transform: translateY(-5px);
       box-shadow: 0 15px 30px rgba(255, 107, 0, 0.15);
     }
@@ -111,7 +111,7 @@
       transition: color 0.3s ease;
       
       &:hover {
-        color: #ff6b00;
+        color: var(--accent-strong);
       }
     }
   }

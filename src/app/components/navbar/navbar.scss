@@ -36,8 +36,11 @@
             color: #ff6b00;
         }
 
-        .nav-links a:not(.active):not(:hover) {
+        .nav-links a {
             color: #888;
+            &:hover, &.active {
+                color: #ff6b00;
+            }
         }
 
         .lang-toggle {
@@ -73,7 +76,7 @@
         .nav-links a {
             color: #555;
             &:hover, &.active {
-                color: #ff6b00;
+                color: var(--accent-strong);
             }
         }
         .lang-toggle {
@@ -87,7 +90,7 @@
                 }
 
                 &.active {
-                    color: #ff6b00;
+                    color: var(--accent-strong);
                     text-shadow: none;
                 }
             }
@@ -156,7 +159,7 @@
         transition: 0.3s;
 
         &:hover, &.active {
-            color: #ff6b00;
+            color: var(--accent-strong);
         }
     }
 }
@@ -239,7 +242,7 @@
         }
 
         &.active {
-            color: #ff6b00;
+            color: var(--accent-strong);
             text-shadow: none;
         }
     }

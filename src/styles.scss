@@ -1,3 +1,10 @@
+// Darker oranges for light backgrounds: 4.5:1 for small text and white text, 3:1 for large text (WCAG AA)
+:root {
+  --accent-strong: #c05000;
+  --accent-strong-hover: #a34400;
+  --accent-large: #e65c00;
+}
+
 html {
   scroll-behavior: smooth;
   // Thin themed scrollbar
@@ -18,7 +25,7 @@ body{
 
 // Keyboard focus outline
 :focus-visible {
-  outline: 2px solid #ff6b00;
+  outline: 2px solid var(--accent-strong);
   outline-offset: 3px;
   border-radius: 4px;
 }

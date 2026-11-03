@@ -226,9 +226,9 @@
     }
 
     &.active {
-      background: #ff6b00;
+      background: var(--accent-strong);
       color: #fff;
-      border-color: #ff6b00;
+      border-color: var(--accent-strong);
     }
   }
 }
@@ -277,7 +277,7 @@
   }
 }
 .btn-cv {
-  background-color: #ff6b00;
+  background-color: var(--accent-strong);
   color: #fff;
   padding: 12px 25px;
   border-radius: 5px;
@@ -287,7 +287,7 @@
   letter-spacing: 1px;
   transition: 0.3s;
   &:hover {
-    background-color: #e65a00;
+    background-color: var(--accent-strong-hover);
     transform: translateY(-3px);
   }
   .arrow { margin-left: 10px; }
