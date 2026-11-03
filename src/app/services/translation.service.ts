@@ -1,4 +1,6 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Injectable, computed, effect, inject, signal } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 export type Language = 'pt' | 'en';
 
@@ -10,6 +12,11 @@ export class TranslationService {
 
   readonly translations = {
     pt: {
+      meta: {
+        htmlLang: 'pt-BR',
+        title: 'Nicolas Kleiton | Desenvolvedor Fullstack',
+        description: 'Portfólio de Nicolas Kleiton, Desenvolvedor Fullstack e Engenheiro de Software. Interfaces com React e Angular, backends em Python e soluções com IA.'
+      },
       navbar: {
         home: 'Início',
         about: 'Sobre Mim',
@@ -73,6 +80,11 @@ export class TranslationService {
       }
     },
     en: {
+      meta: {
+        htmlLang: 'en',
+        title: 'Nicolas Kleiton | Fullstack Developer',
+        description: 'Portfolio of Nicolas Kleiton, Fullstack Developer and Software Engineer. Interfaces with React and Angular, Python backends and AI-powered solutions.'
+      },
       navbar: {
         home: 'Home',
         about: 'About Me',
@@ -138,6 +150,20 @@ export class TranslationService {
   };
 
   readonly t = computed(() => this.translations[this.language()]);
+
+  private readonly document = inject(DOCUMENT);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+
+  constructor() {
+    // Keep <html lang>, <title> and the meta description in sync with the selected language
+    effect(() => {
+      const { htmlLang, title, description } = this.t().meta;
+      this.document.documentElement.lang = htmlLang;
+      this.title.setTitle(title);
+      this.meta.updateTag({ name: 'description', content: description });
+    });
+  }
 
   toggleLanguage() {
     this.language.update(l => l === 'pt' ? 'en' : 'pt');
