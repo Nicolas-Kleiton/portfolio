@@ -20,7 +20,7 @@
     <div class="extra-info">
       @for (edu of educationList(); track edu.title) {
         <div class="info-box">
-          <h4>{{ edu.title }}</h4>
+          <h3>{{ edu.title }}</h3>
           <p class="highlight">{{ edu.highlight }}</p>
           @if (edu.subtext) {
             <p class="subtext">{{ edu.subtext }}</p>
@@ -30,7 +30,7 @@
 
       @for (ach of achievementsList(); track ach.title) {
         <div class="info-box">
-          <h4>{{ ach.title }}</h4>
+          <h3>{{ ach.title }}</h3>
           <p class="highlight">{{ ach.highlight }}</p>
         </div>
       }
@@ -38,7 +38,7 @@
 
     <div class="skills-section">
       <div class="skills-header">
-        <h4>{{ t.about.techStack }}</h4>
+        <h3>{{ t.about.techStack }}</h3>
         <div class="filter-menu" role="group" [attr.aria-label]="t.about.filterLabel">
           <button type="button" [class.active]="activeFilter() === 'all'" [attr.aria-pressed]="activeFilter() === 'all'" (click)="setFilter('all')">{{ t.about.filterAll }}</button>
           <button type="button" [class.active]="activeFilter() === 'frontend'" [attr.aria-pressed]="activeFilter() === 'frontend'" (click)="setFilter('frontend')">{{ t.about.filterFrontend }}</button>
