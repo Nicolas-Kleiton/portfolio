@@ -9,10 +9,12 @@
     <div class="project-group">
       <h3 class="group-title">{{ t.projects.enterprise }} <span class="lock-icon" aria-hidden="true">🔒</span></h3>
       <div class="projects-grid enterprise">
-        @for (project of enterpriseProjects(); track project.iconText) {
+        @for (project of enterpriseProjects(); track project.title) {
         <div class="project-card abstract">
           <div class="card-icon">
-            <i class="tech-icon" aria-hidden="true">{{ project.iconText }}</i>
+            <span class="confidential-badge"><span aria-hidden="true">🔒</span> {{ t.projects.confidential }}</span>
+            <span class="metric-value">{{ project.metric }}</span>
+            <span class="metric-label">{{ project.metricLabel }}</span>
           </div>
           <div class="card-content">
             <span class="project-date">{{ project.date }}</span>
@@ -50,7 +52,7 @@
                 <span>{{ tag }}</span>
               }
             </div>
-            <div style="display: flex; gap: 1.5rem; align-items: center;">
+            <div class="project-links">
               @if (project.githubLink) {
                 <a [href]="project.githubLink" target="_blank" rel="noopener noreferrer" class="view-project">
                   {{ t.projects.viewRepo }} <span class="arrow" aria-hidden="true">→</span>

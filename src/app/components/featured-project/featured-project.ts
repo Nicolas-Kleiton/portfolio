@@ -21,15 +21,17 @@ export class FeaturedProject {
         title: t.gabiaTitle,
         date: t.gabiaDate,
         description: t.gabia,
-        tags: ['React', 'TypeScript', 'Python', 'OpenAI', 'Clean Arch'],
-        iconText: 'GabIA'
+        metric: t.gabiaMetric,
+        metricLabel: t.gabiaMetricLabel,
+        tags: ['React', 'TypeScript', 'Python', 'OpenAI', 'Clean Arch']
       },
       {
         title: t.sisleiaTitle,
         date: t.sisleiaDate,
         description: t.sisleia,
-        tags: ['React', 'TypeScript', 'Python', 'OpenAI', 'Clean Arch'],
-        iconText: 'SISLEIA'
+        metric: t.sisleiaMetric,
+        metricLabel: t.sisleiaMetricLabel,
+        tags: ['React', 'TypeScript', 'PWA', 'Python', 'FastAPI']
       }
     ];
   });
@@ -37,12 +39,11 @@ export class FeaturedProject {
   // Personal Projects: Visual representation
   readonly personalProjects = computed(() => {
     const t = this.translationService.t().projects;
-    const isPt = this.translationService.language() === 'pt';
     return [
       {
         title: 'PerCurso',
         date: t.percursoDate,
-        award: isPt ? '🏆 2º Lugar Hackathon' : '🏆 2nd Place Hackathon',
+        award: t.award,
         description: t.percurso,
         tags: ['Next.js 15', 'React', 'Markdown (Remark)', 'CSS Modules', 'SSG'],
         imageUrl: 'percurso/percurso.webp',

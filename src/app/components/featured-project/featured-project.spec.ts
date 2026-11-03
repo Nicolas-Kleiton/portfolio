@@ -8,6 +8,7 @@ describe('FeaturedProject', () => {
   let fixture: ComponentFixture<FeaturedProject>;
 
   beforeEach(async () => {
+    localStorage.setItem('lang', 'pt');
     await TestBed.configureTestingModule({
       imports: [FeaturedProject],
     }).compileComponents();
@@ -16,6 +17,8 @@ describe('FeaturedProject', () => {
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
+
+  afterEach(() => localStorage.clear());
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -41,5 +44,12 @@ describe('FeaturedProject', () => {
     const text = (fixture.nativeElement as HTMLElement).textContent;
     expect(text).toContain('Featured Projects');
     expect(text).toContain('2nd Place Hackathon');
+    expect(text).toContain('Confidential');
+  });
+
+  it('should highlight the result of each confidential project', () => {
+    const metrics = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('.metric-value'))
+      .map(el => el.textContent?.trim());
+    expect(metrics).toEqual(['−80%', '100%']);
   });
 });

@@ -108,25 +108,23 @@
 
     .card-img { transform: scale(1.05); }
     
-    .card-icon .tech-icon {
-      color: rgba(255, 107, 0, 0.2);
-      letter-spacing: 15px;
+    .card-icon .metric-value {
+      transform: scale(1.06);
     }
   }
 
   &.abstract {
     .card-icon {
-      height: 140px;
+      height: 150px;
+      // Top padding leaves room for the confidential badge
+      padding-top: 26px;
       background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-
-      @media (max-width: 576px) {
-        height: 120px;
-      }
 
       &::before {
         content: '';
@@ -136,17 +134,40 @@
         background: radial-gradient(circle, rgba(255, 107, 0, 0.03) 0%, transparent 70%);
       }
 
-      .tech-icon {
-        font-family: 'Inter', sans-serif;
-        font-style: normal;
+      .metric-value {
+        font-size: 2.6rem;
         font-weight: 900;
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.05);
-        letter-spacing: 8px;
+        line-height: 1;
+        color: #ff6b00;
+        letter-spacing: -1px;
         z-index: 1;
-        transition: all 0.5s ease;
+        transition: transform 0.5s ease;
+      }
+
+      .metric-label {
+        margin-top: 8px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: #888;
+        letter-spacing: 2px;
         text-transform: uppercase;
-        user-select: none;
+        z-index: 1;
+      }
+
+      .confidential-badge {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        padding: 4px 10px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #999;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        z-index: 1;
       }
     }
   }
@@ -251,6 +272,13 @@
           border-color: rgba(255, 107, 0, 0.2);
         }
       }
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1.5rem;
+      align-items: center;
     }
 
     .view-project {
