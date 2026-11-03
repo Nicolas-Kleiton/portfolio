@@ -4,11 +4,23 @@ import { Meta, Title } from '@angular/platform-browser';
 
 export type Language = 'pt' | 'en';
 
+const STORAGE_KEY = 'lang';
+
+function detectLanguage(): Language {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored === 'pt' || stored === 'en') return stored;
+  } catch {
+    // Storage unavailable (private mode, blocked cookies)
+  }
+  return navigator.language?.toLowerCase().startsWith('pt') ? 'pt' : 'en';
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
-  readonly language = signal<Language>('pt');
+  readonly language = signal<Language>(detectLanguage());
 
   readonly translations = {
     pt: {
@@ -31,7 +43,8 @@ export class TranslationService {
         greeting: '👋, meu nome é Nicolas e',
         imA: 'EU SOU',
         roles: ['ENGENHEIRO DE SOFTWARE', 'DESENVOLVEDOR FULLSTACK'],
-        heading: 'Nicolas Kleiton, Engenheiro de Software e Desenvolvedor Fullstack'
+        heading: 'Nicolas Kleiton, Engenheiro de Software e Desenvolvedor Fullstack',
+        scroll: 'Role'
       },
       about: {
         subtitle: 'QUEM SOU EU',
@@ -54,6 +67,12 @@ export class TranslationService {
           infra: 'Docker, Git, Arquitetura Limpa',
           ai: 'Integração com LLM (OpenAI), Engenharia de Prompt'
         },
+        categories: {
+          frontend: 'Frontend',
+          backend: 'Backend & Banco de Dados',
+          infra: 'Infraestrutura',
+          ai: 'Inteligência Artificial'
+        },
         downloadCv: 'BAIXAR CV',
         github: 'GITHUB',
         linkedin: 'LINKEDIN'
@@ -65,6 +84,12 @@ export class TranslationService {
         personal: 'Projetos Pessoais',
         viewRepo: 'VER REPOSITÓRIO',
         viewLive: 'VISITAR SITE',
+        award: '🏆 2º Lugar Hackathon',
+        confidential: 'Confidencial',
+        gabiaMetric: '−80%',
+        gabiaMetricLabel: 'de análise manual',
+        sisleiaMetric: '100%',
+        sisleiaMetricLabel: 'do fluxo automatizado',
         gabiaTitle: 'GabIA — Análise de Recursos',
         gabiaDate: '03/2025 — Presente',
         gabia: 'Desenvolvimento de ponta a ponta, desde requisitos até manutenção. Implementei Clean Architecture para <strong>reduzir a análise manual do auditor em 80%</strong>. Desenvolvi pipelines Python com OpenAI e Engenharia de Prompt para categorização de documentos.',
@@ -105,7 +130,8 @@ export class TranslationService {
         greeting: '👋, my name is Nicolas and',
         imA: "I'M A",
         roles: ['SOFTWARE ENGINEER', 'FULLSTACK DEVELOPER'],
-        heading: 'Nicolas Kleiton, Software Engineer and Fullstack Developer'
+        heading: 'Nicolas Kleiton, Software Engineer and Fullstack Developer',
+        scroll: 'Scroll'
       },
       about: {
         subtitle: 'WHO I AM',
@@ -128,6 +154,12 @@ export class TranslationService {
           infra: 'Docker, Git, Clean Architecture',
           ai: 'LLM Integration (OpenAI), Prompt Engineering'
         },
+        categories: {
+          frontend: 'Frontend',
+          backend: 'Backend & DB',
+          infra: 'Infrastructure',
+          ai: 'Artificial Intelligence'
+        },
         downloadCv: 'DOWNLOAD CV',
         github: 'GITHUB',
         linkedin: 'LINKEDIN'
@@ -139,6 +171,12 @@ export class TranslationService {
         personal: 'Personal Projects',
         viewRepo: 'VIEW REPOSITORY',
         viewLive: 'LIVE DEMO',
+        award: '🏆 2nd Place Hackathon',
+        confidential: 'Confidential',
+        gabiaMetric: '−80%',
+        gabiaMetricLabel: 'manual analysis',
+        sisleiaMetric: '100%',
+        sisleiaMetricLabel: 'automated workflow',
         gabiaTitle: 'GabIA — Resource Analysis',
         gabiaDate: '03/2025 — Present',
         gabia: 'Full-cycle development from requirements to maintenance. Implemented Clean Architecture to <strong>reduce manual auditor analysis by 80%</strong>. Built Python pipelines with OpenAI and Prompt Engineering for document categorization.',
@@ -178,10 +216,15 @@ export class TranslationService {
   }
 
   toggleLanguage() {
-    this.language.update(l => l === 'pt' ? 'en' : 'pt');
+    this.setLanguage(this.language() === 'pt' ? 'en' : 'pt');
   }
 
   setLanguage(lang: Language) {
     this.language.set(lang);
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+    } catch {
+      // Storage unavailable: keep the choice for this session only
+    }
   }
 }

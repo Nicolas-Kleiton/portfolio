@@ -4,21 +4,52 @@ import { Title } from '@angular/platform-browser';
 import { TranslationService } from './translation.service';
 
 describe('TranslationService', () => {
-  let service: TranslationService;
+  const mockBrowserLanguage = (lang: string) =>
+    vi.spyOn(navigator, 'language', 'get').mockReturnValue(lang);
 
-  beforeEach(() => {
-    service = TestBed.inject(TranslationService);
+  const createService = () => {
+    const service = TestBed.inject(TranslationService);
     TestBed.tick();
+    return service;
+  };
+
+  beforeEach(() => localStorage.clear());
+  afterEach(() => {
+    localStorage.clear();
+    vi.restoreAllMocks();
   });
 
-  it('should sync html lang, title and description with the default language', () => {
+  it('should use Portuguese for Portuguese browsers', () => {
+    mockBrowserLanguage('pt-BR');
+    expect(createService().language()).toBe('pt');
+  });
+
+  it('should fall back to English for other browser languages', () => {
+    mockBrowserLanguage('de-DE');
+    expect(createService().language()).toBe('en');
+  });
+
+  it('should prefer the language previously chosen by the visitor', () => {
+    mockBrowserLanguage('pt-BR');
+    localStorage.setItem('lang', 'en');
+    expect(createService().language()).toBe('en');
+  });
+
+  it('should remember the chosen language', () => {
+    mockBrowserLanguage('pt-BR');
+    createService().toggleLanguage();
+    expect(localStorage.getItem('lang')).toBe('en');
+  });
+
+  it('should sync html lang, title and description with the language', () => {
+    mockBrowserLanguage('pt-BR');
+    const service = createService();
+
     expect(document.documentElement.lang).toBe('pt-BR');
     expect(TestBed.inject(Title).getTitle()).toBe('Nicolas Kleiton | Engenheiro de Software');
     expect(document.querySelector('meta[name="description"]')?.getAttribute('content'))
       .toContain('Engenheiro de Software');
-  });
 
-  it('should update document metadata when the language changes', () => {
     service.toggleLanguage();
     TestBed.tick();
 

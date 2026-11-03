@@ -7,6 +7,7 @@ describe('Navbar', () => {
   let fixture: ComponentFixture<Navbar>;
 
   beforeEach(async () => {
+    localStorage.setItem('lang', 'pt');
     await TestBed.configureTestingModule({
       imports: [Navbar],
     }).compileComponents();
@@ -16,7 +17,10 @@ describe('Navbar', () => {
     await fixture.whenStable();
   });
 
-  afterEach(() => fixture.destroy());
+  afterEach(() => {
+    fixture.destroy();
+    localStorage.clear();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

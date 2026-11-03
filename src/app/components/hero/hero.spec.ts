@@ -7,6 +7,7 @@ describe('HeroComponent', () => {
   let fixture: ComponentFixture<HeroComponent>;
 
   beforeEach(async () => {
+    localStorage.setItem('lang', 'pt');
     await TestBed.configureTestingModule({
       imports: [HeroComponent],
     }).compileComponents();
@@ -16,7 +17,10 @@ describe('HeroComponent', () => {
     await fixture.whenStable();
   });
 
-  afterEach(() => fixture.destroy());
+  afterEach(() => {
+    fixture.destroy();
+    localStorage.clear();
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

@@ -62,12 +62,12 @@ export class About implements AfterViewInit, OnDestroy {
   });
 
   private readonly allSkills = computed(() => {
-    const skills = this.translationService.t().about.skills;
+    const { skills, categories } = this.translationService.t().about;
     return [
-      { category: 'Frontend', items: skills.frontend, type: 'frontend' },
-      { category: 'Backend & DB', items: skills.backend, type: 'backend' },
-      { category: 'Infrastructure', items: skills.infra, type: 'tools' },
-      { category: 'Artificial Intelligence', items: skills.ai, type: 'tools' }
+      { category: categories.frontend, items: skills.frontend, type: 'frontend' },
+      { category: categories.backend, items: skills.backend, type: 'backend' },
+      { category: categories.infra, items: skills.infra, type: 'tools' },
+      { category: categories.ai, items: skills.ai, type: 'tools' }
     ];
   });
 
